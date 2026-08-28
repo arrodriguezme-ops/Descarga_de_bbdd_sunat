@@ -10,7 +10,6 @@ data/*.xlsx
 data/*.zip
 data/*.dbf
 data/resultados_sunat/
-data/subpartidas_completo.csv
 data/validacion_subpartidas.csv
 data/resumen_descarga_sunat.csv
 data/importaciones_consolidado.csv
@@ -42,6 +41,7 @@ tessdata_custom/
 #   data/usgs_mcs/processed/       (parquet)
 #   data/sisap_parquet/, data/sisap_parquet_completo.parquet
 #   data/minem_cpim/               (csv, ya es liviano)
+#   data/subpartidas_completo.csv  (csv, ya es liviano)
 # data/consolidados/, data/dbf_extraidos/ y data/clima_nasa/ NO se
 # versionan -- son exports de sesiones de prueba puntuales (una
 # subpartida, un departamento), no una base canonica.
