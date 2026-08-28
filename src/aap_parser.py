@@ -2,18 +2,36 @@
 aap_parser.py
 
 Extrae datos estructurados de un informe mensual de la AAP (PDF nativo, no
-escaneado). Dos fuentes, dentro del mismo documento:
+escaneado). Tres fuentes, dentro del mismo documento:
 
 1. Tabla mensual principal "Venta de vehículos livianos y pesados"
    (Año x Ene..Dic, con todo el histórico desde 2017 hasta el mes del
-   informe) -- es la ÚNICA tabla del documento con bordes lo bastante
-   limpios para parsear fila por fila de forma confiable (se probó con
-   pdfplumber.extract_tables() y separa encabezado de datos porque las
-   celdas no tienen bordes completos; el texto plano línea por línea SÍ
-   sale limpio, así que se parsea así).
-2. Los totales acumulados (enero-mes del informe) por tipo de vehículo
-   (livianos / pesados / menores), que el resumen ejecutivo siempre repite
-   como una frase con el número en unidades -- se extraen por regex.
+   informe) -- SOLO aparece en algunas ediciones (se confirmó que ediciones
+   más recientes la incluyen como anexo; muchas ediciones 2020-2024 NO la
+   traen). Cuando está, es la única tabla del documento con bordes lo
+   bastante limpios para parsear fila por fila de forma confiable.
+2. El titular del mes propio del informe ("en <mes> de <año> se vendieron
+   X unidades...") para livianos/pesados/menores, dentro del resumen
+   ejecutivo -- SIEMPRE está presente, pero la AAP cambió la redacción de
+   esta frase varias veces a lo largo de los años (al menos 4 estilos
+   distintos detectados entre 2020 y 2026: "Venta vehículos livianos: ...
+   vendieron X unidades", "livianos nuevos se ubicó en X unidades", "se
+   vendieron X vehículos livianos", "livianos nuevos llegó a X unidades").
+   Se cubre con varios patrones/verbos alternativos (best-effort: si la
+   redacción de un mes puntual no matchea ninguno, esa celda queda vacía,
+   no se inventa). Esta es la fuente principal de la serie mensual cuando
+   no hay tabla-anexo (1).
+3. Los totales acumulados (enero-mes del informe) por tipo de vehículo,
+   que el resumen ejecutivo también repite como frase aparte -- se
+   extraen por regex (best-effort, igual que (2)).
+
+Nota de layout: muchas páginas de estos informes tienen dos columnas (una
+barra lateral angosta + el texto principal). pdfplumber.extract_text()
+por defecto intercala el texto de ambas columnas por posición vertical,
+lo que rompe oraciones a la mitad. Por eso el texto para (2) y (3) se
+reconstruye columna por columna (ver _texto_columnas_adaptativo) en vez de
+usar extract_text() directo -- éste último sólo se usa para (1), que sale
+bien porque esa tabla ocupa el ancho completo de la página.
 
 Las tablas de ranking por marca/región/color/origen NO se parsean (tienen
 layouts mucho más variables entre ediciones y con pdfplumber no salen
@@ -39,6 +57,43 @@ def _texto_completo(ruta_pdf: Path) -> list[str]:
 
     with pdfplumber.open(ruta_pdf) as pdf:
         return [p.extract_text() or "" for p in pdf.pages]
+
+
+def _texto_columnas_adaptativo(pagina) -> str:
+    """Reconstruye el texto de una página respetando columnas: si detecta
+    un "hueco" (gutter) ancho sin palabras cerca del centro de la página,
+    separa en dos columnas y reconstruye cada una top-a-bottom / izq-a-der
+    por separado (evita que se intercalen oraciones de la barra lateral
+    con las del texto principal). Si no hay hueco claro (texto a ancho
+    completo, como en varios informes narrativos), no separa nada."""
+    palabras = pagina.extract_words(use_text_flow=False, keep_blank_chars=False)
+    if not palabras:
+        return ""
+
+    ancho = pagina.width
+    centros = sorted((w["x0"] + w["x1"]) / 2 for w in palabras)
+    mejor_hueco, corte = 0.0, None
+    for a, b in zip(centros, centros[1:]):
+        medio = (a + b) / 2
+        if ancho * 0.3 < medio < ancho * 0.7 and (b - a) > mejor_hueco:
+            mejor_hueco, corte = b - a, medio
+
+    def _reconstruir(lista_palabras) -> str:
+        bandas: dict[int, list] = {}
+        for w in lista_palabras:
+            bandas.setdefault(round(w["top"] / 3), []).append(w)
+        lineas = []
+        for fila in sorted(bandas):
+            palabras_fila = sorted(bandas[fila], key=lambda w: w["x0"])
+            lineas.append(" ".join(w["text"] for w in palabras_fila))
+        return "\n".join(lineas)
+
+    UMBRAL_HUECO_PT = 25
+    if mejor_hueco >= UMBRAL_HUECO_PT:
+        izquierda = [w for w in palabras if (w["x0"] + w["x1"]) / 2 < corte]
+        derecha = [w for w in palabras if (w["x0"] + w["x1"]) / 2 >= corte]
+        return _reconstruir(izquierda) + "\n" + _reconstruir(derecha)
+    return _reconstruir(palabras)
 
 
 def _a_numero(token: str) -> Optional[float]:
@@ -88,9 +143,98 @@ def extraer_serie_principal(paginas_texto: list[str]) -> pd.DataFrame:
 # de unidades acumuladas (enero -> mes del informe) para cada tipo.
 _PATRONES_RESUMEN = {
     "Livianos": re.compile(r"comercializaron\s+([\d,]+)\s+unidades de veh[ií]culos livianos", re.I),
-    "Pesados": re.compile(r"se vendieron\s+([\d,]+)\s+unidades[,.]", re.I),
+    # OJO: sin ancla al tipo, este patron matcheaba el PRIMER "se vendieron
+    # X unidades" del documento (que suele ser el de Livianos) y lo
+    # etiquetaba como Pesados -- ahora exige que "pesados" o "tractocamiones"
+    # aparezca cerca, en la misma oracion.
+    "Pesados": re.compile(
+        r"(?:veh[ií]culos?\s+pesados|tractocamiones)[^.]{0,200}?"
+        r"(?:se\s+vendieron|vendieron|se\s+situ[óo]\s+en|se\s+ubic[óo]\s+en)\s+([\d,]+)\s+unidades",
+        re.I,
+    ),
     "Menores": re.compile(r"comercializaron\s+([\d,]+)\s+unidades[,.]\s+n[uú]mero", re.I),
 }
+
+# Verbos que la AAP ha usado, en distintas ediciones, para reportar la
+# cifra del PROPIO mes del informe (no acumulada) por tipo de vehículo.
+_RE_NUM_TITULAR = r"([\d,]+(?:\.\d+)?)"
+_VERBOS_TITULAR = (
+    r"(?:vendieron|se\s+vendieron|se\s+ubic[óo]\s+en|se\s+situ[óo]\s+en|registr[óo]"
+    r"|lleg[óo]\s+a|avanz[óo]\s+a|retrocedi[óo]\s+a|cay[óo]\s+a|descendi[óo]\s+a|ascendi[óo]\s+a)"
+)
+
+_PATRONES_TITULAR_MENSUAL = {
+    "Livianos": [
+        re.compile(
+            rf"veh[ií]culos?\s+livianos(?!\s+y\s+pesados)[^.]{{0,150}}?{_VERBOS_TITULAR}\s+{_RE_NUM_TITULAR}",
+            re.I,
+        ),
+        re.compile(rf"{_VERBOS_TITULAR}\s+{_RE_NUM_TITULAR}\s+veh[ií]culos?\s+livianos", re.I),
+    ],
+    "Pesados": [
+        re.compile(rf"veh[ií]culos?\s+pesados[^.]{{0,150}}?{_VERBOS_TITULAR}\s+{_RE_NUM_TITULAR}", re.I),
+        re.compile(rf"tractocamiones[^.]{{0,80}}?{_VERBOS_TITULAR}\s+{_RE_NUM_TITULAR}", re.I),
+    ],
+    "Menores": [
+        re.compile(
+            rf"veh[ií]culos?\s+menores(?!\s*\()[^.]{{0,150}}?{_VERBOS_TITULAR}\s+{_RE_NUM_TITULAR}",
+            re.I,
+        ),
+        re.compile(
+            rf"veh[ií]culos?\s+menores\s*\(motos\s+y\s+trimotos\)[^.]{{0,80}}?{_VERBOS_TITULAR}\s+{_RE_NUM_TITULAR}",
+            re.I,
+        ),
+    ],
+}
+
+
+# Rango plausible de unidades vendidas EN UN SOLO MES (Peru, 2017-2026) por
+# tipo -- sirve para descartar automaticamente los casos en que el regex
+# atrapa por error una cifra ACUMULADA (varios meses) en vez de la mensual
+# (la redaccion de "acumulado" y "del mes" es demasiado parecida en varias
+# ediciones para distinguirlas de forma 100% confiable solo con texto).
+_RANGO_PLAUSIBLE = {
+    "Livianos": (1_000, 40_000),
+    "Pesados": (100, 5_000),
+    "Menores": (5_000, 90_000),
+}
+
+
+def _primer_match_plausible(texto: str, patrones: list[re.Pattern], tipo: str) -> Optional[float]:
+    minimo, maximo = _RANGO_PLAUSIBLE[tipo]
+    for patron in patrones:
+        for m in patron.finditer(texto):
+            valor = _a_numero(m.group(1))
+            if valor is not None and minimo <= valor <= maximo:
+                return valor
+    return None
+
+
+# Meses de confinamiento total (abril/mayo 2020): las concesionarias
+# estuvieron cerradas y la venta fue -100%/nula, pero el resumen ejecutivo
+# no dice "se vendieron 0 unidades" en ningun lado -- dice explicitamente
+# que no hubo venta. Sin este detector, los patrones de arriba terminan
+# atrapando por error algun numero suelto de otra parte del texto.
+_RE_VENTA_NULA = re.compile(
+    r"cay[óo]\s+-?100\s*%|no\s+se\s+registr[óo]\s+la\s+venta|permanecieron\s+cerradas",
+    re.I,
+)
+
+
+def extraer_titular_mensual(paginas_texto_columnas: list[str]) -> dict[str, Optional[float]]:
+    """Extrae, del resumen ejecutivo, la cifra del PROPIO mes del informe
+    (no acumulada) por tipo de vehículo -- best-effort via varios patrones
+    (la AAP cambió la redacción de esta frase varias veces entre 2020 y
+    2026); si ninguno matchea (o el numero que matchea cae fuera del rango
+    plausible para un solo mes -- suele ser una cifra acumulada mal
+    capturada), ese tipo queda None (no se inventa)."""
+    texto = " ".join(" ".join(t.split()) for t in paginas_texto_columnas)
+    if _RE_VENTA_NULA.search(texto[:600]):
+        return {"Livianos": 0.0, "Pesados": 0.0, "Menores": 0.0}
+    return {
+        tipo: _primer_match_plausible(texto, patrones, tipo)
+        for tipo, patrones in _PATRONES_TITULAR_MENSUAL.items()
+    }
 
 
 def extraer_resumen_por_tipo(paginas_texto: list[str], anio_informe: int, mes_informe: int) -> pd.DataFrame:
@@ -113,8 +257,38 @@ def extraer_resumen_por_tipo(paginas_texto: list[str], anio_informe: int, mes_in
 
 
 def parsear_informe(ruta_pdf: Path, anio_informe: int, mes_informe: int) -> dict:
-    paginas_texto = _texto_completo(ruta_pdf)
+    import pdfplumber
+
+    with pdfplumber.open(ruta_pdf) as pdf:
+        paginas_texto = [p.extract_text() or "" for p in pdf.pages]
+        # el resumen ejecutivo (titulares mensuales) siempre esta en las
+        # primeras paginas -- no hace falta reconstruir el documento entero
+        # columna por columna (mas lento).
+        paginas_texto_columnas = [_texto_columnas_adaptativo(p) for p in pdf.pages[:6]]
+
+    serie = extraer_serie_principal(paginas_texto)
+
+    # Si la tabla-anexo (Año x Ene..Dic) no trae el propio mes del informe
+    # (o no existe en esta edicion, que es lo mas comun en 2020-2024),
+    # completamos esa unica celda con el titular del resumen ejecutivo
+    # (Livianos + Pesados = mismo total que reportaria la tabla-anexo).
+    ya_tiene_mes_propio = not serie.empty and (
+        (serie["anio"] == anio_informe) & (serie["mes"] == mes_informe)
+    ).any()
+    if not ya_tiene_mes_propio:
+        titular = extraer_titular_mensual(paginas_texto_columnas)
+        livianos, pesados = titular.get("Livianos"), titular.get("Pesados")
+        if livianos is not None and pesados is not None:
+            fila_propia = pd.DataFrame([{
+                "anio": anio_informe, "mes": mes_informe,
+                "mes_nombre": MESES_ORDEN[mes_informe - 1],
+                "unidades": livianos + pesados,
+            }])
+            serie = pd.concat([serie, fila_propia], ignore_index=True).sort_values(
+                ["anio", "mes"]
+            ).reset_index(drop=True)
+
     return {
-        "serie_principal": extraer_serie_principal(paginas_texto),
+        "serie_principal": serie,
         "resumen_por_tipo": extraer_resumen_por_tipo(paginas_texto, anio_informe, mes_informe),
     }
