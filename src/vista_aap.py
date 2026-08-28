@@ -82,8 +82,45 @@ def render():
     filtrado = serie[serie["anio"].between(*rango_anios)]
     st.success(f"{len(filtrado)} meses -- {filtrado['unidades'].sum():,.0f} unidades vendidas en el rango elegido")
 
-    filtrado_orden = filtrado.assign(periodo=filtrado["anio"].astype(str) + "-" + filtrado["mes"].astype(str).str.zfill(2))
-    st.line_chart(filtrado_orden.set_index("periodo")["unidades"])
+    # Ojo: la AAP no publica un mismo informe con historico continuo --
+    # cada edicion trae una tabla-anexo con una ventana de anios propia, y
+    # entre los 79 informes descargados ningun anio 2009-2015 aparece en
+    # NINGUNA de esas ventanas (no es un error de lectura, la fuente no
+    # lo trae). Si se grafica tal cual con st.line_chart, la libreria
+    # une 2008-12 con 2016-01 con una linea recta como si fuera
+    # continuo -- para no sugerir datos que no existen, se insertan
+    # meses vacios (NaN) en los huecos reales, que streamlit sí corta.
+    anios_presentes = set(filtrado["anio"].unique())
+    anios_esperados = set(range(rango_anios[0], rango_anios[1] + 1))
+    anios_faltantes = sorted(anios_esperados - anios_presentes)
+
+    indice_completo = pd.period_range(
+        start=f"{rango_anios[0]}-01", end=f"{rango_anios[1]}-12", freq="M"
+    )
+    filtrado_orden = filtrado.assign(
+        periodo=pd.PeriodIndex(
+            filtrado["anio"].astype(str) + "-" + filtrado["mes"].astype(str).str.zfill(2), freq="M"
+        )
+    ).set_index("periodo")["unidades"]
+    serie_completa = filtrado_orden.reindex(indice_completo)
+    serie_completa.index = serie_completa.index.astype(str)
+    st.line_chart(serie_completa)
+
+    if anios_faltantes:
+        rangos = []
+        inicio = anios_faltantes[0]
+        anterior = inicio
+        for a in anios_faltantes[1:] + [None]:
+            if a != anterior + 1:
+                rangos.append(f"{inicio}" if inicio == anterior else f"{inicio}-{anterior}")
+                inicio = a
+            anterior = a
+        st.caption(
+            f"⚠️ Sin datos mensuales para: {', '.join(rangos)} -- ningún informe descargado de AAP "
+            "trae esos años en su tabla histórica (no es un error de este panel, la fuente no los "
+            "publica en los 79 informes disponibles). El gráfico corta la línea en vez de unir el "
+            "hueco con una recta engañosa."
+        )
 
     st.markdown("**Total anual**")
     st.bar_chart(filtrado.groupby("anio")["unidades"].sum())
@@ -114,11 +151,30 @@ def render():
             st.info("Sin datos para ese filtro.")
         else:
             resumen_filtrado = resumen_filtrado.assign(
-                periodo=resumen_filtrado["anio_informe"].astype(str) + "-" + resumen_filtrado["mes_informe"].astype(str).str.zfill(2)
+                periodo=pd.PeriodIndex(
+                    resumen_filtrado["anio_informe"].astype(str) + "-" + resumen_filtrado["mes_informe"].astype(str).str.zfill(2),
+                    freq="M",
+                )
             )
             pivot = resumen_filtrado.pivot_table(index="periodo", columns="tipo_vehiculo", values="unidades_acumuladas_enero_a_mes")
+            # este resumen es MUY disperso (solo algunos meses de cada
+            # edicion logran extraerse, ver aap_parser.py) -- si se
+            # grafica solo con los periodos que SI tienen dato, quedan
+            # como categorias contiguas en el eje aunque esten a años de
+            # distancia, y la linea que las conecta parece un salto corto
+            # cuando en realidad es un hueco enorme. Reindexar contra la
+            # grilla mensual completa hace que el hueco se vea como
+            # hueco (linea cortada), no como un salto engañoso.
+            indice_completo = pd.period_range(start=pivot.index.min(), end=pivot.index.max(), freq="M")
+            pivot = pivot.reindex(indice_completo)
+            pivot.index = pivot.index.astype(str)
             st.line_chart(pivot)
-            st.caption("Unidades acumuladas de enero al mes del informe (no es venta mensual aislada, es acumulado del año).")
+            st.caption(
+                "Unidades acumuladas de enero al mes del informe (no es venta mensual aislada, es "
+                "acumulado del año). La cobertura es dispersa -- muchos meses no se logran extraer "
+                "de forma confiable (la AAP cambió la redacción de esa cifra varias veces entre "
+                "2020 y 2026), por eso hay tantos cortes en la línea."
+            )
             with st.expander("Ver tabla"):
                 st.dataframe(resumen_filtrado, width="stretch", hide_index=True)
 

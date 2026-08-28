@@ -82,3 +82,13 @@ def render():
         "vehículo y año, con gráficos y descarga de la base completa.",
         "Ir a Sector Automotor", "aap", "ir_aap",
     )
+
+    fila4 = st.columns(3)
+    _tarjeta(
+        fila4[0], "🔧 Sector Automotor AAP — Detalle",
+        "Todo lo demás que traen los informes de AAP: ventas anuales por "
+        "segmento (SUV, pick-up, motos, trimotos...), ranking por marca, "
+        "tablas por color/origen/combustible/lujo/electrificados/créditos, "
+        "mapa por oficina registral y series de línea reconstruidas.",
+        "Ir al Detalle AAP", "aap_detalle", "ir_aap_detalle",
+    )

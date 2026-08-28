@@ -26,6 +26,7 @@ import vista_concentracion  # noqa: E402
 import vista_inicio  # noqa: E402
 import vista_sisap  # noqa: E402
 import vista_aap  # noqa: E402
+import vista_aap_detalle  # noqa: E402
 import vista_minem  # noqa: E402
 import vista_pdf_herramientas  # noqa: E402
 import vista_sunat  # noqa: E402
@@ -67,6 +68,9 @@ with st.sidebar:
     if st.button("🚗 Sector Automotor AAP", width="stretch"):
         st.session_state.pagina = "aap"
         st.rerun()
+    if st.button("🔧 Sector Automotor AAP — Detalle", width="stretch"):
+        st.session_state.pagina = "aap_detalle"
+        st.rerun()
 
 temas.aplicar_tema(tema_elegido)
 
@@ -88,3 +92,5 @@ elif st.session_state.pagina == "pdf":
     vista_pdf_herramientas.render()
 elif st.session_state.pagina == "aap":
     vista_aap.render()
+elif st.session_state.pagina == "aap_detalle":
+    vista_aap_detalle.render()
