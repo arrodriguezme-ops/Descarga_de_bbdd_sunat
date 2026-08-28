@@ -200,20 +200,34 @@ def render():
 
         with dc2:
             st.markdown("**Base completa** (~11 millones de filas, todos los mercados/productos/años)")
-            st.download_button(
-                "⬇️ Parquet completo (rápido, ~20 MB)",
-                data=PARQUET_COMPLETO.read_bytes(),
-                file_name="sisap_mayorista_completo.parquet",
-                mime="application/octet-stream",
-                width="stretch",
-            )
-            st.download_button(
-                "⬇️ CSV completo (~1 GB, puede tardar)",
-                data=CSV_ORIGEN.read_bytes(),
-                file_name="sisap_mayorista_completo.csv",
-                mime="text/csv",
-                width="stretch",
-            )
+            # OJO: st.download_button lee "data" SIEMPRE que la pagina se
+            # redibuja (no solo al hacer click) -- si el archivo no existe
+            # (ej. el CSV crudo de ~1 GB, que a proposito no viene en el
+            # repo por pesado) hay que chequear antes de leerlo, si no
+            # tumba la pagina entera con un FileNotFoundError.
+            if PARQUET_COMPLETO.exists():
+                st.download_button(
+                    "⬇️ Parquet completo (rápido, ~20 MB)",
+                    data=PARQUET_COMPLETO.read_bytes(),
+                    file_name="sisap_mayorista_completo.parquet",
+                    mime="application/octet-stream",
+                    width="stretch",
+                )
+            else:
+                st.caption("(Parquet completo no disponible -- corre `python src/sisap_convertir_parquet.py`)")
+            if CSV_ORIGEN.exists():
+                st.download_button(
+                    "⬇️ CSV completo (~1 GB, puede tardar)",
+                    data=CSV_ORIGEN.read_bytes(),
+                    file_name="sisap_mayorista_completo.csv",
+                    mime="text/csv",
+                    width="stretch",
+                )
+            else:
+                st.caption(
+                    "(CSV crudo completo no disponible en este clone -- no se versiona por pesado. "
+                    "Usa el Parquet de arriba, o corre `python descargar_sisap_completo.py` para bajarlo.)"
+                )
             ruta_dta_completo = CARPETA_EXPORTS / "sisap_mayorista_completo.dta"
             if ruta_dta_completo.exists():
                 st.download_button(
