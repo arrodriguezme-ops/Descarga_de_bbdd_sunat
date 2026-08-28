@@ -52,7 +52,22 @@ El resto de este documento detalla cada servicio.
 ### ⚠️ Requisito adicional para "Herramientas de PDF"
 
 La pestaña OCR → PDF necesita el motor **Tesseract OCR** instalado en el
-sistema (no es un paquete de Python, es un programa aparte):
+sistema (no es un paquete de Python, es un programa aparte), con el
+idioma español agregado.
+
+**Vía automática (Windows, recomendada):**
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\instalar_tesseract_ocr.ps1
+```
+
+Instala Tesseract con winget si hace falta, descarga el idioma español,
+y configura todo sin necesitar permisos de administrador. Al terminar
+**cerrá y volvé a abrir la terminal** (las variables de entorno nuevas
+solo las ve una terminal abierta después de correr el script) y ya
+podés usar la pestaña.
+
+**Vía manual (o si el script no aplica a tu caso):**
 
 ```bash
 winget install --id UB-Mannheim.TesseractOCR -e
