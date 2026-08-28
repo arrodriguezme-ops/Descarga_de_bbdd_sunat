@@ -1,22 +1,23 @@
 """
 aap_construir_bases_finales.py
 
-Ultimo paso: toma los CSV "detalle_*" que ya produjo
+Ultimo paso: toma los parquet "detalle_*" que ya produjo
 aap_construir_detalle(_paralelo).py -- que son el volcado crudo por
 pagina, con ruido y texto de titulo inconsistente entre ediciones -- y
 arma las bases finales, LIMPIAS, en los niveles de agregacion que tiene
-sentido usar:
+sentido usar (tambien en Parquet -- son las que se versionan en el repo):
 
-- base_ventas_mensual_por_tipo.csv   (=serie_mensual.csv de aap_parser,
-                                       ya esta limpia, se copia tal cual)
-- base_ventas_anuales_por_segmento.csv  (categoria_padre, segmento,
+- base_ventas_mensual_por_tipo.parquet   (=serie_mensual.parquet de
+                                       aap_parser, ya esta limpia, se
+                                       copia tal cual)
+- base_ventas_anuales_por_segmento.parquet  (categoria_padre, segmento,
                                        anio_dato, unidades -- "a <mes> de
                                        cada año" por Automoviles/SW,
                                        Camionetas, SUV, Pick-up, Camiones
                                        y tracto, Minibus/Omnibus, Motos,
                                        Trimotos, Segmento de lujo,
                                        Electrificados)
-- base_ventas_por_marca.csv          (categoria_padre, marca, anio,
+- base_ventas_por_marca.parquet      (categoria_padre, marca, anio,
                                        unidades, rank, var_pct_acum,
                                        part_pct)
 
@@ -136,11 +137,11 @@ def _categoria_padre(seccion: str) -> str:
 
 
 def construir_ventas_por_segmento() -> pd.DataFrame:
-    ruta = CARPETA_PROCESADO / "detalle_barras_segmento_anual.csv"
+    ruta = CARPETA_PROCESADO / "detalle_barras_segmento_anual.parquet"
     if not ruta.exists():
         print(f"  (no existe {ruta.name}, se salta)")
         return pd.DataFrame()
-    df = pd.read_csv(ruta, encoding="utf-8-sig", low_memory=False)
+    df = pd.read_parquet(ruta)
 
     df["_segmento_norm"] = df["subtitulo"].apply(_normalizar)
     segmento_canonico = pd.Series(pd.NA, index=df.index, dtype="object")
@@ -226,11 +227,11 @@ def _categoria_marca(seccion: str, subtitulo: str) -> Optional[str]:
 
 
 def construir_ventas_por_marca() -> pd.DataFrame:
-    ruta = CARPETA_PROCESADO / "detalle_ranking_marca.csv"
+    ruta = CARPETA_PROCESADO / "detalle_ranking_marca.parquet"
     if not ruta.exists():
         print(f"  (no existe {ruta.name}, se salta)")
         return pd.DataFrame()
-    df = pd.read_csv(ruta, encoding="utf-8-sig", low_memory=False)
+    df = pd.read_parquet(ruta)
 
     df["categoria"] = df.apply(lambda f: _categoria_marca(f.get("seccion", ""), f.get("subtitulo", "")), axis=1)
     antes = len(df)
@@ -269,24 +270,26 @@ def construir_ventas_por_marca() -> pd.DataFrame:
 
 
 def main():
-    print("Construyendo base_ventas_anuales_por_segmento.csv...")
+    from aap_tablas_detalle import guardar_parquet
+
+    print("Construyendo base_ventas_anuales_por_segmento.parquet...")
     df_segmento = construir_ventas_por_segmento()
-    ruta_segmento = CARPETA_PROCESADO / "base_ventas_anuales_por_segmento.csv"
-    df_segmento.to_csv(ruta_segmento, index=False, encoding="utf-8-sig")
+    ruta_segmento = CARPETA_PROCESADO / "base_ventas_anuales_por_segmento.parquet"
+    guardar_parquet(df_segmento, ruta_segmento)
     print(f"  -> {len(df_segmento)} filas en {ruta_segmento}\n")
 
-    print("Construyendo base_ventas_por_marca.csv...")
+    print("Construyendo base_ventas_por_marca.parquet...")
     df_marca = construir_ventas_por_marca()
-    ruta_marca = CARPETA_PROCESADO / "base_ventas_por_marca.csv"
-    df_marca.to_csv(ruta_marca, index=False, encoding="utf-8-sig")
+    ruta_marca = CARPETA_PROCESADO / "base_ventas_por_marca.parquet"
+    guardar_parquet(df_marca, ruta_marca)
     print(f"  -> {len(df_marca)} filas en {ruta_marca}\n")
 
-    ruta_mensual_origen = CARPETA_PROCESADO / "serie_mensual.csv"
+    ruta_mensual_origen = CARPETA_PROCESADO / "serie_mensual.parquet"
     if ruta_mensual_origen.exists():
-        df_mensual = pd.read_csv(ruta_mensual_origen, encoding="utf-8-sig")
-        ruta_mensual = CARPETA_PROCESADO / "base_ventas_mensual_por_tipo.csv"
-        df_mensual.to_csv(ruta_mensual, index=False, encoding="utf-8-sig")
-        print(f"base_ventas_mensual_por_tipo.csv -> {len(df_mensual)} filas (copiado de serie_mensual.csv)")
+        df_mensual = pd.read_parquet(ruta_mensual_origen)
+        ruta_mensual = CARPETA_PROCESADO / "base_ventas_mensual_por_tipo.parquet"
+        guardar_parquet(df_mensual, ruta_mensual)
+        print(f"base_ventas_mensual_por_tipo.parquet -> {len(df_mensual)} filas (copiado de serie_mensual.parquet)")
 
 
 if __name__ == "__main__":

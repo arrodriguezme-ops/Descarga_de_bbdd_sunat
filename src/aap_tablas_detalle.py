@@ -62,6 +62,28 @@ _RE_MES_COL = re.compile(r"^(Ene|Feb|Mar|Abr|May|Jun|Jul|Ago|Set|Sep|Oct|Nov|Dic
 _RE_NUM = re.compile(r"^-?[\d,]+(?:\.\d+)?%?$")
 
 
+def guardar_parquet(df: pd.DataFrame, ruta) -> None:
+    """to_parquet() explota si el DataFrame no tiene NINGUNA columna (un
+    pd.DataFrame() vacio a secas) -- pasa si alguna categoria no encontro
+    nada en ningun informe del rango. Se guarda igual (con un unico
+    placeholder) en vez de tumbar todo el pipeline. Compartido por los
+    scripts aap_construir_detalle*.py -- todas las bases de AAP que se
+    versionan en el repo van en Parquet, no CSV (mas chicas, tipos de
+    dato correctos)."""
+    if df.columns.empty:
+        df = pd.DataFrame({"_sin_datos": pd.Series(dtype="object")})
+    # las columnas "cX" de tablas_grilla, o columnas con tipos mezclados
+    # entre ediciones, a veces quedan como object con numeros y texto
+    # revueltos -- to_parquet exige un tipo consistente por columna, asi
+    # que se fuerza texto en las que no son puramente numericas.
+    for col in df.columns:
+        if df[col].dtype == "object":
+            df[col] = df[col].astype(str).where(df[col].notna(), None)
+    ruta = Path(ruta)
+    ruta.parent.mkdir(parents=True, exist_ok=True)
+    df.to_parquet(ruta, index=False, compression="zstd")
+
+
 def _a_numero(token: str) -> Optional[float]:
     token = (token or "").strip().replace('"', "")
     if token in ("-", "", "—", "n/a", "N/A"):

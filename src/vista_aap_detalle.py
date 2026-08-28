@@ -9,7 +9,9 @@ ventas por marca, tablas de detalle (color/origen/combustible/lujo/
 electrificados/creditos/importaciones), mapa regional y series
 reconstruidas de graficos sin etiquetar.
 
-Lee data/aap_informes/processed/base_*.csv y detalle_*.csv.
+Lee data/aap_informes/processed/base_*.parquet y detalle_*.parquet
+(almacenamiento en Parquet -- son las bases livianas que se versionan en
+el repo; los botones de descarga igual ofrecen CSV/Excel).
 """
 
 import io
@@ -25,19 +27,19 @@ if str(RAIZ / "src") not in sys.path:
 
 CARPETA = RAIZ / "data" / "aap_informes" / "processed"
 
-ARCHIVO_SEGMENTO = CARPETA / "base_ventas_anuales_por_segmento.csv"
-ARCHIVO_MARCA = CARPETA / "base_ventas_por_marca.csv"
-ARCHIVO_MAPA = CARPETA / "detalle_mapa_regional.csv"
-ARCHIVO_LINEAS = CARPETA / "detalle_lineas_no_etiquetadas.csv"
+ARCHIVO_SEGMENTO = CARPETA / "base_ventas_anuales_por_segmento.parquet"
+ARCHIVO_MARCA = CARPETA / "base_ventas_por_marca.parquet"
+ARCHIVO_MAPA = CARPETA / "detalle_mapa_regional.parquet"
+ARCHIVO_LINEAS = CARPETA / "detalle_lineas_no_etiquetadas.parquet"
 
 TABLAS_DETALLE = {
-    "Por color": "detalle_tabla_por_color.csv",
-    "Por origen de fabricación": "detalle_tabla_por_origen_fabricacion.csv",
-    "Motos por combustible y cilindrada": "detalle_tabla_motos_combustible_cilindrada.csv",
-    "Segmento de lujo": "detalle_tabla_lujo_por_clase.csv",
-    "Electrificados por tipo de tecnología": "detalle_tabla_electrificados_tipo_tecnologia.csv",
-    "Saldo de créditos vehiculares": "detalle_tabla_saldo_creditos_vehiculares.csv",
-    "Importación de suministros": "detalle_tabla_importacion_suministros.csv",
+    "Por color": "detalle_tabla_por_color.parquet",
+    "Por origen de fabricación": "detalle_tabla_por_origen_fabricacion.parquet",
+    "Motos por combustible y cilindrada": "detalle_tabla_motos_combustible_cilindrada.parquet",
+    "Segmento de lujo": "detalle_tabla_lujo_por_clase.parquet",
+    "Electrificados por tipo de tecnología": "detalle_tabla_electrificados_tipo_tecnologia.parquet",
+    "Saldo de créditos vehiculares": "detalle_tabla_saldo_creditos_vehiculares.parquet",
+    "Importación de suministros": "detalle_tabla_importacion_suministros.parquet",
 }
 
 
@@ -45,7 +47,7 @@ TABLAS_DETALLE = {
 def _cargar(ruta: Path) -> pd.DataFrame:
     if not ruta.exists():
         return pd.DataFrame()
-    return pd.read_csv(ruta, encoding="utf-8-sig", low_memory=False)
+    return pd.read_parquet(ruta)
 
 
 @st.cache_data(show_spinner=False)
@@ -168,7 +170,7 @@ def render():
             if informe_sel != "Todos":
                 df_tabla = df_tabla[df_tabla["informe_fuente"] == informe_sel]
         st.dataframe(df_tabla, width="stretch", hide_index=True)
-        _boton_descarga(df_tabla, f"aap_{TABLAS_DETALLE[tabla_elegida].replace('.csv', '')}", "tabla")
+        _boton_descarga(df_tabla, f"aap_{TABLAS_DETALLE[tabla_elegida].replace('.parquet', '')}", "tabla")
         st.caption(
             "Columnas c0, c1, c2... cuando no tienen nombre propio: se alinean por POSICIÓN "
             "entre ediciones (el texto exacto del encabezado varía levemente entre informes)."

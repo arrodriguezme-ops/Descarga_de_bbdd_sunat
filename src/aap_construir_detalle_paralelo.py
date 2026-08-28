@@ -62,7 +62,7 @@ def _procesar_uno(args: tuple[int, int, str]) -> tuple[str, dict[str, pd.DataFra
 
 def main(desde: str | None = None, hasta: str | None = None, procesos: int | None = None):
     from aap_scraper import listar_informes
-    from aap_tablas_detalle import consolidar_tablas_grilla
+    from aap_tablas_detalle import consolidar_tablas_grilla, guardar_parquet
 
     df_informes = listar_informes().sort_values(["anio", "mes"]).reset_index(drop=True)
     if desde:
@@ -93,14 +93,14 @@ def main(desde: str | None = None, hasta: str | None = None, procesos: int | Non
     CARPETA_PROCESADO.mkdir(parents=True, exist_ok=True)
     for cat, lst in acumulado.items():
         df_final = pd.concat(lst, ignore_index=True) if lst else pd.DataFrame()
-        ruta_salida = CARPETA_PROCESADO / f"detalle_{cat}.csv"
-        df_final.to_csv(ruta_salida, index=False, encoding="utf-8-sig")
+        ruta_salida = CARPETA_PROCESADO / f"detalle_{cat}.parquet"
+        guardar_parquet(df_final, ruta_salida)
         print(f"{len(df_final)} filas -> {ruta_salida}")
 
     familias = consolidar_tablas_grilla(tablas_grilla_crudas)
     for familia, df_final in familias.items():
-        ruta_salida = CARPETA_PROCESADO / f"detalle_tabla_{familia}.csv"
-        df_final.to_csv(ruta_salida, index=False, encoding="utf-8-sig")
+        ruta_salida = CARPETA_PROCESADO / f"detalle_tabla_{familia}.parquet"
+        guardar_parquet(df_final, ruta_salida)
         print(f"{len(df_final)} filas -> {ruta_salida}")
 
 

@@ -6,8 +6,10 @@ Automotriz del Perú): descarga completa de los informes mensuales, filtros
 por tipo de vehículo y año, descarga de la base completa o filtrada, y
 gráficos.
 
-Lee data/aap_informes/processed/serie_mensual.csv y resumen_por_tipo.csv,
-generados por src/aap_construir_base.py.
+Lee data/aap_informes/processed/serie_mensual.parquet y
+resumen_por_tipo.parquet, generados por src/aap_construir_base.py.
+(Almacenamiento en Parquet -- son las bases livianas que se versionan en
+el repo; los botones de descarga igual ofrecen CSV/Excel.)
 """
 
 import io
@@ -22,10 +24,10 @@ if str(RAIZ / "src") not in sys.path:
     sys.path.insert(0, str(RAIZ / "src"))
 
 CARPETA = RAIZ / "data" / "aap_informes" / "processed"
-ARCHIVO_SERIE = CARPETA / "serie_mensual.csv"
-ARCHIVO_RESUMEN = CARPETA / "resumen_por_tipo.csv"
-ARCHIVO_TOTALES = CARPETA / "totales_anuales.csv"
-ARCHIVO_VARIACION = CARPETA / "variacion_interanual.csv"
+ARCHIVO_SERIE = CARPETA / "serie_mensual.parquet"
+ARCHIVO_RESUMEN = CARPETA / "resumen_por_tipo.parquet"
+ARCHIVO_TOTALES = CARPETA / "totales_anuales.parquet"
+ARCHIVO_VARIACION = CARPETA / "variacion_interanual.parquet"
 CARPETA_RAW = RAIZ / "data" / "aap_informes" / "raw"
 
 
@@ -35,21 +37,21 @@ def _disponible() -> bool:
 
 @st.cache_data(show_spinner=False)
 def _cargar_serie() -> pd.DataFrame:
-    return pd.read_csv(ARCHIVO_SERIE)
+    return pd.read_parquet(ARCHIVO_SERIE)
 
 
 @st.cache_data(show_spinner=False)
 def _cargar_resumen() -> pd.DataFrame:
     if not ARCHIVO_RESUMEN.exists():
         return pd.DataFrame()
-    return pd.read_csv(ARCHIVO_RESUMEN)
+    return pd.read_parquet(ARCHIVO_RESUMEN)
 
 
 @st.cache_data(show_spinner=False)
 def _cargar_csv(ruta: Path) -> pd.DataFrame:
     if not ruta.exists():
         return pd.DataFrame()
-    return pd.read_csv(ruta, encoding="utf-8-sig")
+    return pd.read_parquet(ruta)
 
 
 @st.cache_data(show_spinner=False)

@@ -1,0 +1,872 @@
+﻿proyecto,fuente,variable,valor
+Ampliación Bayóvar,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ampliación Bayóvar,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ampliación Bayóvar,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ampliación Bayóvar,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Bayóvar,"CPIM MINEM, actualización octubre 2025",capex_musd,450.0
+Ampliación Bayóvar,"CPIM MINEM, actualización octubre 2025",departamento,Piura
+Ampliación Bayóvar,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Ampliación Bayóvar,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Bayóvar,"CPIM MINEM, actualización octubre 2025",mineral_principal,Fosfatos
+Ampliación Bayóvar,"CPIM MINEM, actualización octubre 2025",operador,Compañía Minera Miski Mayo S.R.L.
+Ampliación Bayóvar,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Bayóvar,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ampliación Bayóvar,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ampliación Cobriza,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ampliación Cobriza,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ampliación Cobriza,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ampliación Cobriza,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Cobriza,"CPIM MINEM, actualización octubre 2025",capex_musd,93.0
+Ampliación Cobriza,"CPIM MINEM, actualización octubre 2025",departamento,Huancavelica
+Ampliación Cobriza,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Ampliación Cobriza,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Cobriza,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Ampliación Cobriza,"CPIM MINEM, actualización octubre 2025",operador,Operadores Concentrados Peruanos S.A.C.
+Ampliación Cobriza,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Cobriza,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ampliación Cobriza,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ampliación Contonga,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ampliación Contonga,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ampliación Contonga,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ampliación Contonga,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Contonga,"CPIM MINEM, actualización octubre 2025",capex_musd,362.0
+Ampliación Contonga,"CPIM MINEM, actualización octubre 2025",departamento,Áncash
+Ampliación Contonga,"CPIM MINEM, actualización octubre 2025",etapa_avance,CONCEPTUAL
+Ampliación Contonga,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Contonga,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Ampliación Contonga,"CPIM MINEM, actualización octubre 2025",operador,Norcobre S.A.C.
+Ampliación Contonga,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Contonga,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ampliación Contonga,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ampliación Cuajone,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ampliación Cuajone,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ampliación Cuajone,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ampliación Cuajone,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Cuajone,"CPIM MINEM, actualización octubre 2025",capex_musd,605.0
+Ampliación Cuajone,"CPIM MINEM, actualización octubre 2025",departamento,Moquegua
+Ampliación Cuajone,"CPIM MINEM, actualización octubre 2025",etapa_avance,CONCEPTUAL
+Ampliación Cuajone,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Cuajone,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Ampliación Cuajone,"CPIM MINEM, actualización octubre 2025",operador,Southern Perú Copper Corporation
+Ampliación Cuajone,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Cuajone,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ampliación Cuajone,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ampliación Esperanza,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ampliación Esperanza,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ampliación Esperanza,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ampliación Esperanza,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Esperanza,"CPIM MINEM, actualización octubre 2025",capex_musd,300.0
+Ampliación Esperanza,"CPIM MINEM, actualización octubre 2025",departamento,Arequipa
+Ampliación Esperanza,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Ampliación Esperanza,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Esperanza,"CPIM MINEM, actualización octubre 2025",mineral_principal,Oro
+Ampliación Esperanza,"CPIM MINEM, actualización octubre 2025",operador,Compañía Minera Caraveli S.A.C.
+Ampliación Esperanza,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Esperanza,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ampliación Esperanza,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ampliación Huachocolpa,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ampliación Huachocolpa,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ampliación Huachocolpa,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ampliación Huachocolpa,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Huachocolpa,"CPIM MINEM, actualización octubre 2025",capex_musd,167.0
+Ampliación Huachocolpa,"CPIM MINEM, actualización octubre 2025",departamento,Huancavelica
+Ampliación Huachocolpa,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Ampliación Huachocolpa,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Huachocolpa,"CPIM MINEM, actualización octubre 2025",mineral_principal,Plata
+Ampliación Huachocolpa,"CPIM MINEM, actualización octubre 2025",operador,Compañía Minera Kolpa S.A.
+Ampliación Huachocolpa,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Huachocolpa,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ampliación Huachocolpa,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ampliación Huancapetí,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2029
+Ampliación Huancapetí,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2025
+Ampliación Huancapetí,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2029
+Ampliación Huancapetí,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Huancapetí,"CPIM MINEM, actualización octubre 2025",capex_musd,345.0
+Ampliación Huancapetí,"CPIM MINEM, actualización octubre 2025",departamento,Áncash
+Ampliación Huancapetí,"CPIM MINEM, actualización octubre 2025",etapa_avance,INGENIERÍA DE DETALLE
+Ampliación Huancapetí,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Huancapetí,"CPIM MINEM, actualización octubre 2025",mineral_principal,Zinc
+Ampliación Huancapetí,"CPIM MINEM, actualización octubre 2025",operador,Compañía Minera Lincuna S.A.
+Ampliación Huancapetí,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Huancapetí,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Ampliación Huancapetí,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ampliación Huarón,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2032
+Ampliación Huarón,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2026
+Ampliación Huarón,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2026
+Ampliación Huarón,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Huarón,"CPIM MINEM, actualización octubre 2025",capex_musd,118.0
+Ampliación Huarón,"CPIM MINEM, actualización octubre 2025",departamento,Pasco
+Ampliación Huarón,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Ampliación Huarón,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Huarón,"CPIM MINEM, actualización octubre 2025",mineral_principal,Plata
+Ampliación Huarón,"CPIM MINEM, actualización octubre 2025",operador,Pan American Silver Huarón S.A.C.
+Ampliación Huarón,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Huarón,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Ampliación Huarón,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ampliación Ilo,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ampliación Ilo,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ampliación Ilo,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2029
+Ampliación Ilo,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Ilo,"CPIM MINEM, actualización octubre 2025",capex_musd,1354.0
+Ampliación Ilo,"CPIM MINEM, actualización octubre 2025",departamento,Moquegua
+Ampliación Ilo,"CPIM MINEM, actualización octubre 2025",etapa_avance,CONCEPTUAL
+Ampliación Ilo,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Ilo,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Ampliación Ilo,"CPIM MINEM, actualización octubre 2025",operador,Southern Perú Copper Corporation
+Ampliación Ilo,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Ilo,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ampliación Ilo,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ampliación Pachapaqui,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ampliación Pachapaqui,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ampliación Pachapaqui,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ampliación Pachapaqui,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Pachapaqui,"CPIM MINEM, actualización octubre 2025",capex_musd,117.0
+Ampliación Pachapaqui,"CPIM MINEM, actualización octubre 2025",departamento,Áncash
+Ampliación Pachapaqui,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Ampliación Pachapaqui,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Pachapaqui,"CPIM MINEM, actualización octubre 2025",mineral_principal,Zinc
+Ampliación Pachapaqui,"CPIM MINEM, actualización octubre 2025",operador,ICM Pachapaqui S.A.C.
+Ampliación Pachapaqui,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Pachapaqui,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ampliación Pachapaqui,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ampliación Quellaveco,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ampliación Quellaveco,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ampliación Quellaveco,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ampliación Quellaveco,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Quellaveco,"CPIM MINEM, actualización octubre 2025",capex_musd,850.0
+Ampliación Quellaveco,"CPIM MINEM, actualización octubre 2025",departamento,Moquegua
+Ampliación Quellaveco,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Ampliación Quellaveco,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Quellaveco,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Ampliación Quellaveco,"CPIM MINEM, actualización octubre 2025",operador,Anglo American Quellaveco S.A.
+Ampliación Quellaveco,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Quellaveco,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ampliación Quellaveco,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ampliación Recuperada,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ampliación Recuperada,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ampliación Recuperada,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ampliación Recuperada,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Recuperada,"CPIM MINEM, actualización octubre 2025",capex_musd,138.0
+Ampliación Recuperada,"CPIM MINEM, actualización octubre 2025",departamento,Huancavelica
+Ampliación Recuperada,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Ampliación Recuperada,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Recuperada,"CPIM MINEM, actualización octubre 2025",mineral_principal,Plata
+Ampliación Recuperada,"CPIM MINEM, actualización octubre 2025",operador,Recuperada S.A.C.
+Ampliación Recuperada,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Recuperada,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ampliación Recuperada,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ampliación Shougang,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ampliación Shougang,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ampliación Shougang,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ampliación Shougang,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Shougang,"CPIM MINEM, actualización octubre 2025",capex_musd,900.0
+Ampliación Shougang,"CPIM MINEM, actualización octubre 2025",departamento,Ica
+Ampliación Shougang,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Ampliación Shougang,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Shougang,"CPIM MINEM, actualización octubre 2025",mineral_principal,Hierro
+Ampliación Shougang,"CPIM MINEM, actualización octubre 2025",operador,Shougang Hierro Peru S.A.A.
+Ampliación Shougang,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Shougang,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ampliación Shougang,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ampliación Yauricocha,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ampliación Yauricocha,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ampliación Yauricocha,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ampliación Yauricocha,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ampliación Yauricocha,"CPIM MINEM, actualización octubre 2025",capex_musd,235.0
+Ampliación Yauricocha,"CPIM MINEM, actualización octubre 2025",departamento,Lima
+Ampliación Yauricocha,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Ampliación Yauricocha,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ampliación Yauricocha,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Ampliación Yauricocha,"CPIM MINEM, actualización octubre 2025",operador,Sociedad Minera Corona S.A.
+Ampliación Yauricocha,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ampliación Yauricocha,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ampliación Yauricocha,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Antilla,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Antilla,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Antilla,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Antilla,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Antilla,"CPIM MINEM, actualización octubre 2025",capex_musd,250.0
+Antilla,"CPIM MINEM, actualización octubre 2025",departamento,Apurímac
+Antilla,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Antilla,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Antilla,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Antilla,"CPIM MINEM, actualización octubre 2025",operador,Antilla Copper S.A.
+Antilla,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Antilla,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Antilla,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ariana,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ariana,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ariana,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ariana,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ariana,"CPIM MINEM, actualización octubre 2025",capex_musd,140.0
+Ariana,"CPIM MINEM, actualización octubre 2025",departamento,Junín
+Ariana,"CPIM MINEM, actualización octubre 2025",etapa_avance,EJECUCIÓN (SUSPENDIDA)
+Ariana,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ariana,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Ariana,"CPIM MINEM, actualización octubre 2025",operador,Ariana Operaciones Mineras S.A.C.
+Ariana,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ariana,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ariana,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ayawilca,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ayawilca,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ayawilca,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ayawilca,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ayawilca,"CPIM MINEM, actualización octubre 2025",capex_musd,382.0
+Ayawilca,"CPIM MINEM, actualización octubre 2025",departamento,Pasco
+Ayawilca,"CPIM MINEM, actualización octubre 2025",etapa_avance,CONCEPTUAL
+Ayawilca,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ayawilca,"CPIM MINEM, actualización octubre 2025",mineral_principal,Zinc
+Ayawilca,"CPIM MINEM, actualización octubre 2025",operador,Tinka Resources S.A.C.
+Ayawilca,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ayawilca,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ayawilca,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Cañariaco,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Cañariaco,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Cañariaco,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Cañariaco,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Cañariaco,"CPIM MINEM, actualización octubre 2025",capex_musd,2160.0
+Cañariaco,"CPIM MINEM, actualización octubre 2025",departamento,Lambayeque
+Cañariaco,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Cañariaco,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Cañariaco,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Cañariaco,"CPIM MINEM, actualización octubre 2025",operador,Cañariaco Copper Perú S.A.
+Cañariaco,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Cañariaco,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Cañariaco,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Cañón Florida,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Cañón Florida,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Cañón Florida,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Cañón Florida,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Cañón Florida,"CPIM MINEM, actualización octubre 2025",capex_musd,214.0
+Cañón Florida,"CPIM MINEM, actualización octubre 2025",departamento,Amazonas
+Cañón Florida,"CPIM MINEM, actualización octubre 2025",etapa_avance,CONCEPTUAL
+Cañón Florida,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Cañón Florida,"CPIM MINEM, actualización octubre 2025",mineral_principal,Zinc
+Cañón Florida,"CPIM MINEM, actualización octubre 2025",operador,Nexa Resources Perú S.A.A.
+Cañón Florida,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Cañón Florida,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Cañón Florida,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Coimolache Sulfuros,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2034
+Coimolache Sulfuros,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2029
+Coimolache Sulfuros,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2032
+Coimolache Sulfuros,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Coimolache Sulfuros,"CPIM MINEM, actualización octubre 2025",capex_musd,598.0
+Coimolache Sulfuros,"CPIM MINEM, actualización octubre 2025",departamento,Cajamarca
+Coimolache Sulfuros,"CPIM MINEM, actualización octubre 2025",etapa_avance,CONCEPTUAL
+Coimolache Sulfuros,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Coimolache Sulfuros,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Coimolache Sulfuros,"CPIM MINEM, actualización octubre 2025",operador,Compañía Minera Coimolache S.A.
+Coimolache Sulfuros,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Coimolache Sulfuros,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Coimolache Sulfuros,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Conga,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Conga,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Conga,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Conga,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Conga,"CPIM MINEM, actualización octubre 2025",capex_musd,4800.0
+Conga,"CPIM MINEM, actualización octubre 2025",departamento,Cajamarca
+Conga,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Conga,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Conga,"CPIM MINEM, actualización octubre 2025",mineral_principal,Oro
+Conga,"CPIM MINEM, actualización octubre 2025",operador,Minera Yanacocha S.R.L.
+Conga,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Conga,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Conga,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Corani,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2028
+Corani,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2025
+Corani,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2028
+Corani,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Corani,"CPIM MINEM, actualización octubre 2025",capex_musd,579.0
+Corani,"CPIM MINEM, actualización octubre 2025",departamento,Puno
+Corani,"CPIM MINEM, actualización octubre 2025",etapa_avance,INGENIERÍA DE DETALLE
+Corani,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Corani,"CPIM MINEM, actualización octubre 2025",mineral_principal,Plata
+Corani,"CPIM MINEM, actualización octubre 2025",operador,Bear Creek Mining S.A.C.
+Corani,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Corani,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Corani,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Cotabambas,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Cotabambas,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Cotabambas,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Cotabambas,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Cotabambas,"CPIM MINEM, actualización octubre 2025",capex_musd,1486.0
+Cotabambas,"CPIM MINEM, actualización octubre 2025",departamento,Apurímac
+Cotabambas,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Cotabambas,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Cotabambas,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Cotabambas,"CPIM MINEM, actualización octubre 2025",operador,Panoro Apurímac S.A.
+Cotabambas,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Cotabambas,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Cotabambas,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Don Javier,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Don Javier,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Don Javier,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Don Javier,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Don Javier,"CPIM MINEM, actualización octubre 2025",capex_musd,600.0
+Don Javier,"CPIM MINEM, actualización octubre 2025",departamento,Arequipa
+Don Javier,"CPIM MINEM, actualización octubre 2025",etapa_avance,CONCEPTUAL
+Don Javier,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Don Javier,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Don Javier,"CPIM MINEM, actualización octubre 2025",operador,Junefield Group S.A.
+Don Javier,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Don Javier,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Don Javier,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+El Galeno,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+El Galeno,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+El Galeno,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+El Galeno,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+El Galeno,"CPIM MINEM, actualización octubre 2025",capex_musd,3500.0
+El Galeno,"CPIM MINEM, actualización octubre 2025",departamento,Cajamarca
+El Galeno,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+El Galeno,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+El Galeno,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+El Galeno,"CPIM MINEM, actualización octubre 2025",operador,Lumina Copper S.A.C.
+El Galeno,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+El Galeno,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+El Galeno,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Haquira,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Haquira,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Haquira,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Haquira,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Haquira,"CPIM MINEM, actualización octubre 2025",capex_musd,1860.0
+Haquira,"CPIM MINEM, actualización octubre 2025",departamento,Apurímac
+Haquira,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Haquira,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Haquira,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Haquira,"CPIM MINEM, actualización octubre 2025",operador,Minera Antares Perú S.A.C.
+Haquira,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Haquira,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Haquira,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Hierro Apurímac,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Hierro Apurímac,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Hierro Apurímac,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Hierro Apurímac,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Hierro Apurímac,"CPIM MINEM, actualización octubre 2025",capex_musd,2900.0
+Hierro Apurímac,"CPIM MINEM, actualización octubre 2025",departamento,Apurímac
+Hierro Apurímac,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Hierro Apurímac,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Hierro Apurímac,"CPIM MINEM, actualización octubre 2025",mineral_principal,Hierro
+Hierro Apurímac,"CPIM MINEM, actualización octubre 2025",operador,Apurímac Ferrum S.A.C.
+Hierro Apurímac,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Hierro Apurímac,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Hierro Apurímac,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Hilarión,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Hilarión,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Hilarión,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Hilarión,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Hilarión,"CPIM MINEM, actualización octubre 2025",capex_musd,585.0
+Hilarión,"CPIM MINEM, actualización octubre 2025",departamento,Áncash
+Hilarión,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Hilarión,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Hilarión,"CPIM MINEM, actualización octubre 2025",mineral_principal,Zinc
+Hilarión,"CPIM MINEM, actualización octubre 2025",operador,Nexa Resources Perú S.A.A.
+Hilarión,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Hilarión,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Hilarión,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Integración Atacocha - El Porvenir,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Integración Atacocha - El Porvenir,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Integración Atacocha - El Porvenir,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Integración Atacocha - El Porvenir,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Integración Atacocha - El Porvenir,"CPIM MINEM, actualización octubre 2025",capex_musd,
+Integración Atacocha - El Porvenir,"CPIM MINEM, actualización octubre 2025",departamento,
+Integración Atacocha - El Porvenir,"CPIM MINEM, actualización octubre 2025",etapa_avance,POTENCIAL CPIM 2026
+Integración Atacocha - El Porvenir,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Integración Atacocha - El Porvenir,"CPIM MINEM, actualización octubre 2025",mineral_principal,
+Integración Atacocha - El Porvenir,"CPIM MINEM, actualización octubre 2025",operador,
+Integración Atacocha - El Porvenir,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Integración Atacocha - El Porvenir,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Integración Atacocha - El Porvenir,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Integración Coroccohuayco,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2028
+Integración Coroccohuayco,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2027
+Integración Coroccohuayco,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2027
+Integración Coroccohuayco,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Integración Coroccohuayco,"CPIM MINEM, actualización octubre 2025",capex_musd,1500.0
+Integración Coroccohuayco,"CPIM MINEM, actualización octubre 2025",departamento,Cusco
+Integración Coroccohuayco,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Integración Coroccohuayco,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Integración Coroccohuayco,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Integración Coroccohuayco,"CPIM MINEM, actualización octubre 2025",operador,Compañía Minera Antapaccay S.A.
+Integración Coroccohuayco,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Integración Coroccohuayco,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Integración Coroccohuayco,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Katy,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Katy,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Katy,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Katy,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Katy,"CPIM MINEM, actualización octubre 2025",capex_musd,250.0
+Katy,"CPIM MINEM, actualización octubre 2025",departamento,Moquegua
+Katy,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Katy,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Katy,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Katy,"CPIM MINEM, actualización octubre 2025",operador,Cultinor S.A.C.
+Katy,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Katy,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Katy,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+La Arena Sulfuros,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+La Arena Sulfuros,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2029
+La Arena Sulfuros,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+La Arena Sulfuros,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+La Arena Sulfuros,"CPIM MINEM, actualización octubre 2025",capex_musd,1650.0
+La Arena Sulfuros,"CPIM MINEM, actualización octubre 2025",departamento,La Libertad
+La Arena Sulfuros,"CPIM MINEM, actualización octubre 2025",etapa_avance,CONCEPTUAL
+La Arena Sulfuros,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+La Arena Sulfuros,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+La Arena Sulfuros,"CPIM MINEM, actualización octubre 2025",operador,La Arena S.A.
+La Arena Sulfuros,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+La Arena Sulfuros,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+La Arena Sulfuros,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+La Granja,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+La Granja,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+La Granja,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+La Granja,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+La Granja,"CPIM MINEM, actualización octubre 2025",capex_musd,2400.0
+La Granja,"CPIM MINEM, actualización octubre 2025",departamento,Cajamarca
+La Granja,"CPIM MINEM, actualización octubre 2025",etapa_avance,CONCEPTUAL
+La Granja,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+La Granja,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+La Granja,"CPIM MINEM, actualización octubre 2025",operador,Minera La Granja S.A.C.
+La Granja,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+La Granja,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+La Granja,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Los Calatos,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2029
+Los Calatos,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2027
+Los Calatos,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2029
+Los Calatos,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Los Calatos,"CPIM MINEM, actualización octubre 2025",capex_musd,655.0
+Los Calatos,"CPIM MINEM, actualización octubre 2025",departamento,Moquegua
+Los Calatos,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Los Calatos,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Los Calatos,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Los Calatos,"CPIM MINEM, actualización octubre 2025",operador,Minera Hampton Perú S.A.C.
+Los Calatos,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Los Calatos,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Los Calatos,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Los Chancas,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Los Chancas,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Los Chancas,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2031
+Los Chancas,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Los Chancas,"CPIM MINEM, actualización octubre 2025",capex_musd,2600.0
+Los Chancas,"CPIM MINEM, actualización octubre 2025",departamento,Apurímac
+Los Chancas,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Los Chancas,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Los Chancas,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Los Chancas,"CPIM MINEM, actualización octubre 2025",operador,Southern Perú Copper Corporation
+Los Chancas,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Los Chancas,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Los Chancas,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Magistral,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Magistral,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Magistral,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Magistral,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Magistral,"CPIM MINEM, actualización octubre 2025",capex_musd,493.0
+Magistral,"CPIM MINEM, actualización octubre 2025",departamento,Áncash
+Magistral,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Magistral,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Magistral,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Magistral,"CPIM MINEM, actualización octubre 2025",operador,Nexa Resources Perú S.A.A.
+Magistral,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Magistral,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Magistral,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Michiquillay,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Michiquillay,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Michiquillay,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2032
+Michiquillay,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Michiquillay,"CPIM MINEM, actualización octubre 2025",capex_musd,2500.0
+Michiquillay,"CPIM MINEM, actualización octubre 2025",departamento,Cajamarca
+Michiquillay,"CPIM MINEM, actualización octubre 2025",etapa_avance,CONCEPTUAL
+Michiquillay,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Michiquillay,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Michiquillay,"CPIM MINEM, actualización octubre 2025",operador,Southern Perú Copper Corporation
+Michiquillay,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Michiquillay,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Michiquillay,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Mina Justa Subterránea,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Mina Justa Subterránea,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Mina Justa Subterránea,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2027
+Mina Justa Subterránea,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Mina Justa Subterránea,"CPIM MINEM, actualización octubre 2025",capex_musd,500.0
+Mina Justa Subterránea,"CPIM MINEM, actualización octubre 2025",departamento,Ica
+Mina Justa Subterránea,"CPIM MINEM, actualización octubre 2025",etapa_avance,CONCEPTUAL
+Mina Justa Subterránea,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Mina Justa Subterránea,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Mina Justa Subterránea,"CPIM MINEM, actualización octubre 2025",operador,Marcobre S.A.C.
+Mina Justa Subterránea,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Mina Justa Subterránea,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Mina Justa Subterránea,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Ollachea,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Ollachea,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Ollachea,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Ollachea,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Ollachea,"CPIM MINEM, actualización octubre 2025",capex_musd,126.0
+Ollachea,"CPIM MINEM, actualización octubre 2025",departamento,Puno
+Ollachea,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Ollachea,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Ollachea,"CPIM MINEM, actualización octubre 2025",mineral_principal,Oro
+Ollachea,"CPIM MINEM, actualización octubre 2025",operador,Minera Kuri Kullu S.A.
+Ollachea,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Ollachea,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Ollachea,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Optimización Cajamarquilla,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Optimización Cajamarquilla,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Optimización Cajamarquilla,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Optimización Cajamarquilla,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Optimización Cajamarquilla,"CPIM MINEM, actualización octubre 2025",capex_musd,96.0
+Optimización Cajamarquilla,"CPIM MINEM, actualización octubre 2025",departamento,Lima
+Optimización Cajamarquilla,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Optimización Cajamarquilla,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Optimización Cajamarquilla,"CPIM MINEM, actualización octubre 2025",mineral_principal,Zinc
+Optimización Cajamarquilla,"CPIM MINEM, actualización octubre 2025",operador,Nexa Resources Cajamarquilla S.A.
+Optimización Cajamarquilla,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Optimización Cajamarquilla,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Optimización Cajamarquilla,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Optimización Carahuacra - San Cristobal,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Optimización Carahuacra - San Cristobal,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Optimización Carahuacra - San Cristobal,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Optimización Carahuacra - San Cristobal,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Optimización Carahuacra - San Cristobal,"CPIM MINEM, actualización octubre 2025",capex_musd,242.0
+Optimización Carahuacra - San Cristobal,"CPIM MINEM, actualización octubre 2025",departamento,Junín
+Optimización Carahuacra - San Cristobal,"CPIM MINEM, actualización octubre 2025",etapa_avance,POTENCIAL CPIM 2026
+Optimización Carahuacra - San Cristobal,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Optimización Carahuacra - San Cristobal,"CPIM MINEM, actualización octubre 2025",mineral_principal,Zinc
+Optimización Carahuacra - San Cristobal,"CPIM MINEM, actualización octubre 2025",operador,Volcan Compañía Minera S.A.A.
+Optimización Carahuacra - San Cristobal,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,Integración
+Optimización Carahuacra - San Cristobal,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Optimización Carahuacra - San Cristobal,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,Brownfield
+Optimización Cerro Verde,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2053
+Optimización Cerro Verde,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2026
+Optimización Cerro Verde,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2026
+Optimización Cerro Verde,"CPIM MINEM, actualización octubre 2025",capacidad_planta,Ampliación de concentradoras a 420 000 t/día
+Optimización Cerro Verde,"CPIM MINEM, actualización octubre 2025",capex_musd,2100.0
+Optimización Cerro Verde,"CPIM MINEM, actualización octubre 2025",departamento,Arequipa
+Optimización Cerro Verde,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Optimización Cerro Verde,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,"4.58 Mt @ 0.35% Cu, 0.01% Mo, 1.52 g/t Ag"
+Optimización Cerro Verde,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Optimización Cerro Verde,"CPIM MINEM, actualización octubre 2025",operador,Sociedad Minera Cerro Verde S.A.A.
+Optimización Cerro Verde,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,Optimización
+Optimización Cerro Verde,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Optimización Cerro Verde,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,Brownfield
+Optimización Constancia,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Optimización Constancia,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Optimización Constancia,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Optimización Constancia,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Optimización Constancia,"CPIM MINEM, actualización octubre 2025",capex_musd,500.0
+Optimización Constancia,"CPIM MINEM, actualización octubre 2025",departamento,Cusco
+Optimización Constancia,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Optimización Constancia,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Optimización Constancia,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Optimización Constancia,"CPIM MINEM, actualización octubre 2025",operador,Hudbay Perú S.A.C.
+Optimización Constancia,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Optimización Constancia,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Optimización Constancia,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Optimización Julcani,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Optimización Julcani,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Optimización Julcani,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Optimización Julcani,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Optimización Julcani,"CPIM MINEM, actualización octubre 2025",capex_musd,101.0
+Optimización Julcani,"CPIM MINEM, actualización octubre 2025",departamento,Huancavelica
+Optimización Julcani,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Optimización Julcani,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Optimización Julcani,"CPIM MINEM, actualización octubre 2025",mineral_principal,Plata
+Optimización Julcani,"CPIM MINEM, actualización octubre 2025",operador,Compañía de Minas Buenaventura S.A.A.
+Optimización Julcani,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Optimización Julcani,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Optimización Julcani,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Optimización Pallancata,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Optimización Pallancata,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Optimización Pallancata,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Optimización Pallancata,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Optimización Pallancata,"CPIM MINEM, actualización octubre 2025",capex_musd,100.0
+Optimización Pallancata,"CPIM MINEM, actualización octubre 2025",departamento,Ayacucho
+Optimización Pallancata,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Optimización Pallancata,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Optimización Pallancata,"CPIM MINEM, actualización octubre 2025",mineral_principal,Plata
+Optimización Pallancata,"CPIM MINEM, actualización octubre 2025",operador,Compañía Minera Ares S.A.C.
+Optimización Pallancata,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Optimización Pallancata,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Optimización Pallancata,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Optimización Pucamarca,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Optimización Pucamarca,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Optimización Pucamarca,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Optimización Pucamarca,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Optimización Pucamarca,"CPIM MINEM, actualización octubre 2025",capex_musd,106.0
+Optimización Pucamarca,"CPIM MINEM, actualización octubre 2025",departamento,Tacna
+Optimización Pucamarca,"CPIM MINEM, actualización octubre 2025",etapa_avance,INGENIERÍA DE DETALLE
+Optimización Pucamarca,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Optimización Pucamarca,"CPIM MINEM, actualización octubre 2025",mineral_principal,Oro
+Optimización Pucamarca,"CPIM MINEM, actualización octubre 2025",operador,Minsur S.A.
+Optimización Pucamarca,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Optimización Pucamarca,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Optimización Pucamarca,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Pampa de Pongo,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2033
+Pampa de Pongo,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2025
+Pampa de Pongo,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2028
+Pampa de Pongo,"CPIM MINEM, actualización octubre 2025",capacidad_planta,Fase I: 10 Mt/año; Fase II: 20 Mt/año; Fase III: 30 Mt/año
+Pampa de Pongo,"CPIM MINEM, actualización octubre 2025",capex_musd,1781.0
+Pampa de Pongo,"CPIM MINEM, actualización octubre 2025",departamento,Arequipa
+Pampa de Pongo,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Pampa de Pongo,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,"Mineral masivo: 3430.3 Mt @ 39.2% Fe, 0.1 ppm Au, 0.1% Cu (M&I); Mineral brechado: 193.6 Mt @ 17.2% Fe, 0.1% Cu (M&I)"
+Pampa de Pongo,"CPIM MINEM, actualización octubre 2025",mineral_principal,Hierro
+Pampa de Pongo,"CPIM MINEM, actualización octubre 2025",operador,Jinzhao Mining Perú S.A.
+Pampa de Pongo,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Pampa de Pongo,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Pampa de Pongo,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,Greenfield
+Planta de Cobre Río Seco,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Planta de Cobre Río Seco,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Planta de Cobre Río Seco,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Planta de Cobre Río Seco,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Planta de Cobre Río Seco,"CPIM MINEM, actualización octubre 2025",capex_musd,410.0
+Planta de Cobre Río Seco,"CPIM MINEM, actualización octubre 2025",departamento,Lima
+Planta de Cobre Río Seco,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Planta de Cobre Río Seco,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Planta de Cobre Río Seco,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Planta de Cobre Río Seco,"CPIM MINEM, actualización octubre 2025",operador,Procesadora Industrial Río Seco S.A.
+Planta de Cobre Río Seco,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Planta de Cobre Río Seco,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Planta de Cobre Río Seco,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Pukaqaqa,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Pukaqaqa,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Pukaqaqa,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Pukaqaqa,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Pukaqaqa,"CPIM MINEM, actualización octubre 2025",capex_musd,655.0
+Pukaqaqa,"CPIM MINEM, actualización octubre 2025",departamento,Huancavelica
+Pukaqaqa,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Pukaqaqa,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Pukaqaqa,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Pukaqaqa,"CPIM MINEM, actualización octubre 2025",operador,Olympic Precious Metals Ltd.
+Pukaqaqa,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Pukaqaqa,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Pukaqaqa,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Quechua,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Quechua,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Quechua,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Quechua,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Quechua,"CPIM MINEM, actualización octubre 2025",capex_musd,1290.0
+Quechua,"CPIM MINEM, actualización octubre 2025",departamento,Cusco
+Quechua,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Quechua,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Quechua,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Quechua,"CPIM MINEM, actualización octubre 2025",operador,Compañía Minera Quechua S.A.
+Quechua,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Quechua,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Quechua,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Reaprovechamiento Quiruvilca,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Reaprovechamiento Quiruvilca,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Reaprovechamiento Quiruvilca,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Reaprovechamiento Quiruvilca,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Reaprovechamiento Quiruvilca,"CPIM MINEM, actualización octubre 2025",capex_musd,235.0
+Reaprovechamiento Quiruvilca,"CPIM MINEM, actualización octubre 2025",departamento,La Libertad
+Reaprovechamiento Quiruvilca,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Reaprovechamiento Quiruvilca,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Reaprovechamiento Quiruvilca,"CPIM MINEM, actualización octubre 2025",mineral_principal,Oro
+Reaprovechamiento Quiruvilca,"CPIM MINEM, actualización octubre 2025",operador,Atom Enviromental II S.A.C.
+Reaprovechamiento Quiruvilca,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Reaprovechamiento Quiruvilca,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Reaprovechamiento Quiruvilca,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Reposición Antamina,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2029
+Reposición Antamina,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2024
+Reposición Antamina,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2024
+Reposición Antamina,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Reposición Antamina,"CPIM MINEM, actualización octubre 2025",capex_musd,1604.0
+Reposición Antamina,"CPIM MINEM, actualización octubre 2025",departamento,Áncash
+Reposición Antamina,"CPIM MINEM, actualización octubre 2025",etapa_avance,EJECUCIÓN
+Reposición Antamina,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Reposición Antamina,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Reposición Antamina,"CPIM MINEM, actualización octubre 2025",operador,Compañía Minera Antamina S.A.
+Reposición Antamina,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Reposición Antamina,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Reposición Antamina,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Reposición Cerro de Pasco,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Reposición Cerro de Pasco,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Reposición Cerro de Pasco,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Reposición Cerro de Pasco,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Reposición Cerro de Pasco,"CPIM MINEM, actualización octubre 2025",capex_musd,129.0
+Reposición Cerro de Pasco,"CPIM MINEM, actualización octubre 2025",departamento,Pasco
+Reposición Cerro de Pasco,"CPIM MINEM, actualización octubre 2025",etapa_avance,PRE-FACTIBILIDAD
+Reposición Cerro de Pasco,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Reposición Cerro de Pasco,"CPIM MINEM, actualización octubre 2025",mineral_principal,Zinc
+Reposición Cerro de Pasco,"CPIM MINEM, actualización octubre 2025",operador,Empresa Administradora Cerro S.A.C.
+Reposición Cerro de Pasco,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Reposición Cerro de Pasco,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Reposición Cerro de Pasco,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Reposición Colquijirca,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2036
+Reposición Colquijirca,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2025
+Reposición Colquijirca,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2025
+Reposición Colquijirca,"CPIM MINEM, actualización octubre 2025",capacidad_planta,Ampliación de 21 600 a 25 000 t/día
+Reposición Colquijirca,"CPIM MINEM, actualización octubre 2025",capex_musd,502.0
+Reposición Colquijirca,"CPIM MINEM, actualización octubre 2025",departamento,Pasco
+Reposición Colquijirca,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Reposición Colquijirca,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,"Tajo Sur: 4.53 Mt @ 2.05% Zn, 1% Pb, 2.85 oz/t Ag - 29.37 Mt @ 1.47% Cu, 0.66 oz/t Ag; Marcapunta UG: 30.5 Mt @ 1.29% Cu, 1.04 oz/t Ag, 0.67 oz/t Au; Tajo Norte: 6.32 Mt @ 2.26% Zn y Pb, 2.26 oz/t Ag - 1.77 Mt @ 1.51% Cu, 3.02 oz/t Ag"
+Reposición Colquijirca,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Reposición Colquijirca,"CPIM MINEM, actualización octubre 2025",operador,Sociedad Minera El Brocal SAA
+Reposición Colquijirca,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Reposición Colquijirca,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Reposición Colquijirca,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,Brownfield
+Reposición Ferrobamba,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Reposición Ferrobamba,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2026
+Reposición Ferrobamba,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2027
+Reposición Ferrobamba,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Reposición Ferrobamba,"CPIM MINEM, actualización octubre 2025",capex_musd,1753.0
+Reposición Ferrobamba,"CPIM MINEM, actualización octubre 2025",departamento,Apurímac
+Reposición Ferrobamba,"CPIM MINEM, actualización octubre 2025",etapa_avance,EJECUCIÓN
+Reposición Ferrobamba,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Reposición Ferrobamba,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Reposición Ferrobamba,"CPIM MINEM, actualización octubre 2025",operador,Minera Las Bambas S.A.
+Reposición Ferrobamba,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Reposición Ferrobamba,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Reposición Ferrobamba,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Reposición Inmaculada,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2042
+Reposición Inmaculada,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2023
+Reposición Inmaculada,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2024
+Reposición Inmaculada,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Reposición Inmaculada,"CPIM MINEM, actualización octubre 2025",capex_musd,1319.0
+Reposición Inmaculada,"CPIM MINEM, actualización octubre 2025",departamento,Ayacucho
+Reposición Inmaculada,"CPIM MINEM, actualización octubre 2025",etapa_avance,EJECUCIÓN
+Reposición Inmaculada,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Reposición Inmaculada,"CPIM MINEM, actualización octubre 2025",mineral_principal,Oro
+Reposición Inmaculada,"CPIM MINEM, actualización octubre 2025",operador,Compañía Minera Ares S.A.C.
+Reposición Inmaculada,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Reposición Inmaculada,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Reposición Inmaculada,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Reposición Raura,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2028
+Reposición Raura,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2025
+Reposición Raura,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2026
+Reposición Raura,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Reposición Raura,"CPIM MINEM, actualización octubre 2025",capex_musd,76.0
+Reposición Raura,"CPIM MINEM, actualización octubre 2025",departamento,Huánuco
+Reposición Raura,"CPIM MINEM, actualización octubre 2025",etapa_avance,EJECUCIÓN
+Reposición Raura,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Reposición Raura,"CPIM MINEM, actualización octubre 2025",mineral_principal,Zinc
+Reposición Raura,"CPIM MINEM, actualización octubre 2025",operador,Compañía Minera Raura S.A.
+Reposición Raura,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Reposición Raura,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Reposición Raura,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Reposición San Rafael,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2028
+Reposición San Rafael,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2025
+Reposición San Rafael,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2025
+Reposición San Rafael,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Reposición San Rafael,"CPIM MINEM, actualización octubre 2025",capex_musd,294.0
+Reposición San Rafael,"CPIM MINEM, actualización octubre 2025",departamento,Puno
+Reposición San Rafael,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Reposición San Rafael,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Reposición San Rafael,"CPIM MINEM, actualización octubre 2025",mineral_principal,Estaño
+Reposición San Rafael,"CPIM MINEM, actualización octubre 2025",operador,Minsur S.A.
+Reposición San Rafael,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Reposición San Rafael,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Reposición San Rafael,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Reposición Shahuindo,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Reposición Shahuindo,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Reposición Shahuindo,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Reposición Shahuindo,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Reposición Shahuindo,"CPIM MINEM, actualización octubre 2025",capex_musd,289.0
+Reposición Shahuindo,"CPIM MINEM, actualización octubre 2025",departamento,Cajamarca
+Reposición Shahuindo,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Reposición Shahuindo,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Reposición Shahuindo,"CPIM MINEM, actualización octubre 2025",mineral_principal,Oro
+Reposición Shahuindo,"CPIM MINEM, actualización octubre 2025",operador,Shahuindo S.A.C.
+Reposición Shahuindo,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Reposición Shahuindo,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Reposición Shahuindo,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Romina,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2026
+Romina,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2024
+Romina,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2026
+Romina,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Romina,"CPIM MINEM, actualización octubre 2025",capex_musd,130.0
+Romina,"CPIM MINEM, actualización octubre 2025",departamento,Lima
+Romina,"CPIM MINEM, actualización octubre 2025",etapa_avance,EJECUCIÓN
+Romina,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Romina,"CPIM MINEM, actualización octubre 2025",mineral_principal,Zinc
+Romina,"CPIM MINEM, actualización octubre 2025",operador,Compañía Minera Chungar S.A.C.
+Romina,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Romina,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Romina,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Río Blanco,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Río Blanco,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Río Blanco,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Río Blanco,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Río Blanco,"CPIM MINEM, actualización octubre 2025",capex_musd,2792.0
+Río Blanco,"CPIM MINEM, actualización octubre 2025",departamento,Piura
+Río Blanco,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Río Blanco,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Río Blanco,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Río Blanco,"CPIM MINEM, actualización octubre 2025",operador,Rio Blanco Copper S.A.
+Río Blanco,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Río Blanco,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Río Blanco,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+San Gabriel,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2025
+San Gabriel,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2022
+San Gabriel,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2025
+San Gabriel,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+San Gabriel,"CPIM MINEM, actualización octubre 2025",capex_musd,650.0
+San Gabriel,"CPIM MINEM, actualización octubre 2025",departamento,Moquegua
+San Gabriel,"CPIM MINEM, actualización octubre 2025",etapa_avance,EJECUCIÓN
+San Gabriel,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+San Gabriel,"CPIM MINEM, actualización octubre 2025",mineral_principal,Oro
+San Gabriel,"CPIM MINEM, actualización octubre 2025",operador,Compañía de Minas Buenaventura S.A.A.
+San Gabriel,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+San Gabriel,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+San Gabriel,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+San Luis,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+San Luis,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+San Luis,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+San Luis,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+San Luis,"CPIM MINEM, actualización octubre 2025",capex_musd,90.0
+San Luis,"CPIM MINEM, actualización octubre 2025",departamento,Áncash
+San Luis,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+San Luis,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+San Luis,"CPIM MINEM, actualización octubre 2025",mineral_principal,Plata
+San Luis,"CPIM MINEM, actualización octubre 2025",operador,Reliant Ventures S.A.C.
+San Luis,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+San Luis,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+San Luis,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Trapiche,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2031
+Trapiche,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2027
+Trapiche,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2031
+Trapiche,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Trapiche,"CPIM MINEM, actualización octubre 2025",capex_musd,1038.0
+Trapiche,"CPIM MINEM, actualización octubre 2025",departamento,Apurímac
+Trapiche,"CPIM MINEM, actualización octubre 2025",etapa_avance,FACTIBILIDAD
+Trapiche,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Trapiche,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Trapiche,"CPIM MINEM, actualización octubre 2025",operador,El Molle Verde S.A.C.
+Trapiche,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Trapiche,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Trapiche,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Tía María,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2027
+Tía María,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2025
+Tía María,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2027
+Tía María,"CPIM MINEM, actualización octubre 2025",capacidad_planta,100 000 t/día
+Tía María,"CPIM MINEM, actualización octubre 2025",capex_musd,1802.0
+Tía María,"CPIM MINEM, actualización octubre 2025",departamento,Arequipa
+Tía María,"CPIM MINEM, actualización octubre 2025",etapa_avance,EJECUCIÓN
+Tía María,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,Tajo La Tapada: 487.6 Mt @ 0.41% Cu
+Tía María,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Tía María,"CPIM MINEM, actualización octubre 2025",operador,Southern Perú Copper Corporation
+Tía María,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Tía María,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Tía María,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,Greenfield
+Yanacocha Sulfuros,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,
+Yanacocha Sulfuros,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,
+Yanacocha Sulfuros,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,
+Yanacocha Sulfuros,"CPIM MINEM, actualización octubre 2025",capacidad_planta,
+Yanacocha Sulfuros,"CPIM MINEM, actualización octubre 2025",capex_musd,2500.0
+Yanacocha Sulfuros,"CPIM MINEM, actualización octubre 2025",departamento,Cajamarca
+Yanacocha Sulfuros,"CPIM MINEM, actualización octubre 2025",etapa_avance,INGENIERÍA DE DETALLE
+Yanacocha Sulfuros,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,
+Yanacocha Sulfuros,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Yanacocha Sulfuros,"CPIM MINEM, actualización octubre 2025",operador,Minera Yanacocha S.R.L.
+Yanacocha Sulfuros,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Yanacocha Sulfuros,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,False
+Yanacocha Sulfuros,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,
+Zafranal,"CPIM MINEM, actualización octubre 2025",anio_fin_ejecucion,2028
+Zafranal,"CPIM MINEM, actualización octubre 2025",anio_inicio_ejecucion,2025
+Zafranal,"CPIM MINEM, actualización octubre 2025",anio_puesta_marcha,2029
+Zafranal,"CPIM MINEM, actualización octubre 2025",capacidad_planta,80 000 t/día
+Zafranal,"CPIM MINEM, actualización octubre 2025",capex_musd,1900.0
+Zafranal,"CPIM MINEM, actualización octubre 2025",departamento,Arequipa
+Zafranal,"CPIM MINEM, actualización octubre 2025",etapa_avance,INGENIERÍA DE DETALLE
+Zafranal,"CPIM MINEM, actualización octubre 2025",ley_mineral_recursos,"440.7 Mt @ 0.38% Cu, 0.07 g/t Au (P&P)"
+Zafranal,"CPIM MINEM, actualización octubre 2025",mineral_principal,Cobre
+Zafranal,"CPIM MINEM, actualización octubre 2025",operador,Compañía Minera Zafranal S.A.C.
+Zafranal,"CPIM MINEM, actualización octubre 2025",subtipo_proyecto,
+Zafranal,"CPIM MINEM, actualización octubre 2025",tiene_fecha_definida,True
+Zafranal,"CPIM MINEM, actualización octubre 2025",tipo_proyecto,Greenfield

@@ -6,26 +6,31 @@ Corre aap_tablas_detalle.py sobre TODOS los informes ya descargados
 separadas por nivel de agregacion (tal como se pidio: no una sola tabla
 plana, sino una por nivel natural de los datos):
 
-- detalle_tablas_grilla.csv       -- por color / origen / combustible /
+- detalle_tabla_<familia>.parquet -- por color / origen / combustible /
                                       cilindrada, con lo que cada informe
-                                      trae a nivel de detalle no-marca.
-- detalle_ranking_marca.csv       -- ventas por marca, por categoria de
+                                      trae a nivel de detalle no-marca
+                                      (una familia por archivo, ver
+                                      consolidar_tablas_grilla en
+                                      aap_tablas_detalle.py).
+- detalle_ranking_marca.parquet   -- ventas por marca, por categoria de
                                       vehiculo (livianos/camiones/motos/
                                       trimotos/electricos/transferencias),
                                       dos anios de referencia por edicion.
-- detalle_barras_segmento_anual.csv -- ventas anuales "a <mes> de cada
+- detalle_barras_segmento_anual.parquet -- ventas anuales "a <mes> de cada
                                       año" por segmento (Automovil/SW,
                                       Camionetas, SUV, Pick-up, Camiones,
                                       Minibus, Motos, Trimotos, lujo,
                                       electricos...).
-- detalle_mapa_regional.csv       -- ventas por oficina registral
+- detalle_mapa_regional.parquet   -- ventas por oficina registral
                                       (best-effort, cobertura parcial).
-- detalle_lineas_no_etiquetadas.csv -- importaciones/financiamiento mes
+- detalle_lineas_no_etiquetadas.parquet -- importaciones/financiamiento mes
                                       a mes, con columna confianza
                                       ('alta' solo en los extremos con
                                       etiqueta de texto real, 'baja' en
                                       los meses reconstruidos por
                                       geometria del trazo bezier).
+
+Salida en Parquet (no CSV): son las bases que se versionan en el repo.
 
 Solo los informes ~2022 en adelante (documentos "revista" de 46-77
 paginas) tienen estas secciones -- 2020-2021 (14-15 paginas) simplemente
@@ -108,33 +113,33 @@ def main(solo_informe: str | None = None, limite: int | None = None,
 
 
 def _escribir_resultados(acumulado: dict[str, list[pd.DataFrame]], tablas_grilla_crudas: list[pd.DataFrame], append: bool):
-    from aap_tablas_detalle import consolidar_tablas_grilla
+    from aap_tablas_detalle import consolidar_tablas_grilla, guardar_parquet
 
     CARPETA_PROCESADO.mkdir(parents=True, exist_ok=True)
 
     for cat, lst in acumulado.items():
         df_final = pd.concat(lst, ignore_index=True) if lst else pd.DataFrame()
-        ruta_salida = CARPETA_PROCESADO / f"detalle_{cat}.csv"
+        ruta_salida = CARPETA_PROCESADO / f"detalle_{cat}.parquet"
         if append and ruta_salida.exists():
-            previo = pd.read_csv(ruta_salida, encoding="utf-8-sig")
+            previo = pd.read_parquet(ruta_salida)
             df_final = pd.concat([previo, df_final], ignore_index=True)
             if "informe_fuente" in df_final.columns:
                 df_final = df_final.drop_duplicates()
-        df_final.to_csv(ruta_salida, index=False, encoding="utf-8-sig")
+        guardar_parquet(df_final, ruta_salida)
         print(f"{len(df_final)} filas -> {ruta_salida}")
 
     # tablas_grilla se agrupa por familia (por_color, por_origen_...) y se
     # alinea por posicion en vez de por el texto exacto del encabezado
-    # (que varia entre ediciones) -- cada familia sale en su propio CSV.
+    # (que varia entre ediciones) -- cada familia sale en su propio parquet.
     familias = consolidar_tablas_grilla(tablas_grilla_crudas)
     for familia, df_final in familias.items():
-        ruta_salida = CARPETA_PROCESADO / f"detalle_tabla_{familia}.csv"
+        ruta_salida = CARPETA_PROCESADO / f"detalle_tabla_{familia}.parquet"
         if append and ruta_salida.exists():
-            previo = pd.read_csv(ruta_salida, encoding="utf-8-sig")
+            previo = pd.read_parquet(ruta_salida)
             df_final = pd.concat([previo, df_final], ignore_index=True)
             if "informe_fuente" in df_final.columns:
                 df_final = df_final.drop_duplicates()
-        df_final.to_csv(ruta_salida, index=False, encoding="utf-8-sig")
+        guardar_parquet(df_final, ruta_salida)
         print(f"{len(df_final)} filas -> {ruta_salida}")
 
 

@@ -23,24 +23,29 @@ streamlit run app.py
 ```
 
 Con eso ya abre el panel (`http://localhost:8501`) con la pantalla de inicio
-y los 9 servicios navegables desde la barra lateral. **Ningún dato viene
-incluido en el repo** (la carpeta `data/` se genera sola y está en
-`.gitignore` -- son bases grandes que no tiene sentido versionar en git):
-cada servicio, si no encuentra su archivo, te muestra en pantalla el comando
-exacto que hay que correr primero. Resumen de qué correr por servicio (todos
+y los 9 servicios navegables desde la barra lateral. **Las bases ya
+procesadas y livianas SÍ vienen incluidas en el repo** (en Parquet, ~45 MB
+en total) -- Sector Automotor AAP, Minerales USGS, Precios SISAP y Cartera
+Minera MINEM abren con datos reales sin correr nada. Lo que **no** viene
+incluido son los datos crudos/intermedios de cada fuente (PDFs originales,
+CSVs de ~1 GB, DBF descargados) -- esos son pesados o fáciles de
+regenerar, y quedan en `.gitignore`. Si igual quieres regenerar la base de
+algún servicio desde cero (por ejemplo, para traer los informes más
+recientes de AAP), cada servicio te muestra en pantalla el comando exacto
+si no encuentra su archivo. Resumen de qué correr por servicio (todos
 opcionales, corre solo los que te interesen):
 
-| Servicio | Setup | Tiempo aprox. |
-|---|---|---|
-| 📦 Importaciones SUNAT | `python src/descargar_arancel_completo.py` | ~1 min |
-| 🌦️ Clima NASA | *(ninguno, se descarga al vuelo desde la app)* | -- |
-| ⚖️ Concentración (IHH) | *(ninguno -- subes tu propia base desde la app)* | -- |
-| 🥬 Precios SISAP | `python descargar_sisap_completo.py`<br>`python src/sisap_convertir_parquet.py` | horas la 1ª vez |
-| ⛏️ Minerales USGS | `python descargar_usgs_minerales.py`<br>`python src/usgs_limpiar.py` | ~10 min |
-| 🇵🇪 Cartera Minera MINEM | `python src/minem_construir_datos.py` | segundos |
-| 🗂️ Herramientas de PDF | *(ninguno -- pero necesita Tesseract OCR instalado, ver más abajo)* | -- |
-| 🚗 Sector Automotor AAP | `python src/aap_construir_base.py` | ~10-15 min (descarga + parseo de ~80 PDF) |
-| 🔧 Sector Automotor AAP -- Detalle | `python src/aap_construir_detalle_paralelo.py`<br>`python src/aap_construir_bases_finales.py` | ~5-25 min según núcleos *(requiere haber corrido el de arriba primero)* |
+| Servicio | ¿Trae datos? | Setup para regenerar/actualizar | Tiempo aprox. |
+|---|---|---|---|
+| 📦 Importaciones SUNAT | No (subpartida a elegir) | `python src/descargar_arancel_completo.py` | ~1 min |
+| 🌦️ Clima NASA | No, se descarga al vuelo | *(ninguno)* | -- |
+| ⚖️ Concentración (IHH) | No, subes tu propia base | *(ninguno)* | -- |
+| 🥬 Precios SISAP | **Sí** (Parquet incluido) | `python descargar_sisap_completo.py`<br>`python src/sisap_convertir_parquet.py` | horas la 1ª vez |
+| ⛏️ Minerales USGS | **Sí** (Parquet incluido) | `python descargar_usgs_minerales.py`<br>`python src/usgs_limpiar.py` | ~10 min |
+| 🇵🇪 Cartera Minera MINEM | **Sí** (CSV incluido) | `python src/minem_construir_datos.py` | segundos |
+| 🗂️ Herramientas de PDF | No aplica | *(ninguno -- pero necesita Tesseract OCR, ver más abajo)* | -- |
+| 🚗 Sector Automotor AAP | **Sí** (Parquet incluido) | `python src/aap_construir_base.py` | ~10-15 min (descarga + parseo de ~80 PDF) |
+| 🔧 Sector Automotor AAP -- Detalle | **Sí** (Parquet incluido) | `python src/aap_construir_detalle_paralelo.py`<br>`python src/aap_construir_bases_finales.py` | ~5-25 min según núcleos *(requiere haber corrido el de arriba primero)* |
 
 El resto de este documento detalla cada servicio.
 
