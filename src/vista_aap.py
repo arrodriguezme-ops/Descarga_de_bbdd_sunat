@@ -24,6 +24,8 @@ if str(RAIZ / "src") not in sys.path:
 CARPETA = RAIZ / "data" / "aap_informes" / "processed"
 ARCHIVO_SERIE = CARPETA / "serie_mensual.csv"
 ARCHIVO_RESUMEN = CARPETA / "resumen_por_tipo.csv"
+ARCHIVO_TOTALES = CARPETA / "totales_anuales.csv"
+ARCHIVO_VARIACION = CARPETA / "variacion_interanual.csv"
 CARPETA_RAW = RAIZ / "data" / "aap_informes" / "raw"
 
 
@@ -41,6 +43,13 @@ def _cargar_resumen() -> pd.DataFrame:
     if not ARCHIVO_RESUMEN.exists():
         return pd.DataFrame()
     return pd.read_csv(ARCHIVO_RESUMEN)
+
+
+@st.cache_data(show_spinner=False)
+def _cargar_csv(ruta: Path) -> pd.DataFrame:
+    if not ruta.exists():
+        return pd.DataFrame()
+    return pd.read_csv(ruta, encoding="utf-8-sig")
 
 
 @st.cache_data(show_spinner=False)
@@ -129,7 +138,45 @@ def render():
         st.dataframe(filtrado, width="stretch", hide_index=True)
 
     st.divider()
-    st.subheader("2. Totales acumulados por tipo de vehículo (por informe)")
+    st.subheader("2. Tabla oficial: evolución mensual (Total Anual y Var. % interanual)")
+    st.caption(
+        "La tabla \"Año x Ene..Dic\" tal como la publica AAP, con las 2 columnas que la serie "
+        "mensual de arriba no usa (acumulado al mes del informe y total anual) y las filas "
+        "\"Var. %\" de variación interanual mes a mes."
+    )
+
+    totales = _cargar_csv(ARCHIVO_TOTALES)
+    variacion = _cargar_csv(ARCHIVO_VARIACION)
+
+    if totales.empty:
+        st.info(
+            "No hay datos de totales anuales disponibles. Corre `python src/aap_construir_base.py` "
+            "para regenerarlos."
+        )
+    else:
+        st.bar_chart(totales.set_index("anio")["total_anual"])
+        with st.expander("Ver tabla de totales anuales"):
+            st.dataframe(totales, width="stretch", hide_index=True)
+
+        if not variacion.empty:
+            st.markdown("**Variación interanual (%) por mes**")
+            comparaciones = sorted(
+                variacion[["anio_reciente", "anio_anterior"]].drop_duplicates().itertuples(index=False),
+                key=lambda t: t.anio_reciente,
+            )
+            opciones_comp = [f"{c.anio_reciente}/{c.anio_anterior}" for c in comparaciones]
+            comp_sel = st.selectbox("Comparación (año reciente/año anterior)", options=opciones_comp, index=len(opciones_comp) - 1)
+            anio_r, anio_a = (int(x) for x in comp_sel.split("/"))
+            var_filtrada = variacion[(variacion["anio_reciente"] == anio_r) & (variacion["anio_anterior"] == anio_a)]
+            var_meses = var_filtrada[~var_filtrada["concepto"].isin(["Total_acumulado", "Total_anual"])]
+            orden_meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic"]
+            var_meses = var_meses.set_index("concepto").reindex(orden_meses)["var_pct"]
+            st.bar_chart(var_meses)
+            with st.expander("Ver tabla de variación interanual completa"):
+                st.dataframe(variacion, width="stretch", hide_index=True)
+
+    st.divider()
+    st.subheader("3. Totales acumulados por tipo de vehículo (por informe)")
 
     if resumen.empty:
         st.info("No hay datos de resumen por tipo disponibles.")
@@ -179,7 +226,7 @@ def render():
                 st.dataframe(resumen_filtrado, width="stretch", hide_index=True)
 
     st.divider()
-    st.subheader("3. Descargas")
+    st.subheader("4. Descargas")
 
     d1, d2 = st.columns(2)
     with d1:
@@ -202,6 +249,16 @@ def render():
             st.download_button(
                 "⬇️ CSV resumen por tipo completo", data=_exportar_bytes(resumen, "csv"),
                 file_name="aap_resumen_por_tipo_completo.csv", mime="text/csv", width="stretch",
+            )
+        if not totales.empty:
+            st.download_button(
+                "⬇️ CSV totales anuales", data=_exportar_bytes(totales, "csv"),
+                file_name="aap_totales_anuales.csv", mime="text/csv", width="stretch",
+            )
+        if not variacion.empty:
+            st.download_button(
+                "⬇️ CSV variación interanual", data=_exportar_bytes(variacion, "csv"),
+                file_name="aap_variacion_interanual.csv", mime="text/csv", width="stretch",
             )
 
     if CARPETA_RAW.exists() and any(CARPETA_RAW.glob("*.pdf")):

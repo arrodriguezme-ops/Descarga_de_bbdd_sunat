@@ -139,6 +139,98 @@ def extraer_serie_principal(paginas_texto: list[str]) -> pd.DataFrame:
     return df.sort_values(["anio", "mes"]).reset_index(drop=True)
 
 
+def extraer_totales_anuales(paginas_texto: list[str]) -> pd.DataFrame:
+    """Misma tabla que extraer_serie_principal ('Año Ene..Dic Total a
+    <mes> Total Anual'), pero se queda con las 2 columnas finales de cada
+    fila -- el acumulado al mes del informe y el total anual -- que
+    extraer_serie_principal descarta (solo usa los primeros 12
+    tokens)."""
+    filas_salida = []
+    for texto in paginas_texto:
+        if "Ene Feb Mar" not in texto and "Ene\nFeb" not in texto.replace(" ", "\n"):
+            if "Ene" not in texto or "Dic" not in texto:
+                continue
+        for linea in texto.splitlines():
+            m = _RE_FILA_ANUAL.match(linea.strip())
+            if not m:
+                continue
+            anio = int(m.group(1))
+            if not (2000 <= anio <= 2100):
+                continue
+            tokens = _RE_NUM.findall(m.group(2))
+            if len(tokens) < 14:
+                continue  # sin las 2 columnas de total, no hay nada que sacar aca
+            total_acumulado = _a_numero(tokens[12])
+            total_anual = _a_numero(tokens[13])
+            # filtro de plausibilidad: el total anual de vehiculos
+            # livianos+pesados en Peru siempre ha estado en el orden de
+            # decenas/cientos de miles -- un valor de pocos miles (ej. un
+            # "2008"/"2022" que en realidad son OTRO año colandose desde
+            # una tabla vecina mal alineada) no es un total real, se
+            # descarta en vez de guardar basura.
+            if total_anual is not None and total_anual < 10_000:
+                continue
+            if total_acumulado is None and total_anual is None:
+                continue
+            filas_salida.append({
+                "anio": anio,
+                "total_acumulado_a_mes_informe": total_acumulado,
+                "total_anual": total_anual,
+            })
+
+    if not filas_salida:
+        return pd.DataFrame(columns=["anio", "total_acumulado_a_mes_informe", "total_anual"])
+
+    df = pd.DataFrame(filas_salida).drop_duplicates(subset=["anio"], keep="last")
+    return df.sort_values("anio").reset_index(drop=True)
+
+
+_RE_FILA_VAR = re.compile(r"^Var\.?\s*%\s*(\d{2})/(\d{2})\s+(.+)$")
+
+
+def extraer_variacion_interanual(paginas_texto: list[str]) -> pd.DataFrame:
+    """Filas 'Var. % <añoB>/<añoA>' de la misma tabla -- variación
+    porcentual mes a mes (y del acumulado/total anual) respecto al año
+    anterior. Formato largo: anio_reciente, anio_anterior, concepto
+    (Ene..Dic, Total_acumulado, Total_anual), var_pct."""
+    filas_salida = []
+    for texto in paginas_texto:
+        if "Var. %" not in texto and "Var.%" not in texto:
+            continue
+        for linea in texto.splitlines():
+            m = _RE_FILA_VAR.match(linea.strip())
+            if not m:
+                continue
+            anio_reciente = 2000 + int(m.group(1))
+            anio_anterior = 2000 + int(m.group(2))
+            tokens = _RE_NUM.findall(m.group(3))
+            if len(tokens) < 12:
+                continue
+            for i, mes_nombre in enumerate(MESES_ORDEN):
+                if i >= 12:
+                    break
+                valor = _a_numero(tokens[i])
+                if valor is not None:
+                    filas_salida.append({
+                        "anio_reciente": anio_reciente, "anio_anterior": anio_anterior,
+                        "concepto": mes_nombre, "var_pct": valor / 100,
+                    })
+            for idx_token, concepto in ((12, "Total_acumulado"), (13, "Total_anual")):
+                if idx_token < len(tokens):
+                    valor = _a_numero(tokens[idx_token])
+                    if valor is not None:
+                        filas_salida.append({
+                            "anio_reciente": anio_reciente, "anio_anterior": anio_anterior,
+                            "concepto": concepto, "var_pct": valor / 100,
+                        })
+
+    if not filas_salida:
+        return pd.DataFrame(columns=["anio_reciente", "anio_anterior", "concepto", "var_pct"])
+
+    df = pd.DataFrame(filas_salida).drop_duplicates(subset=["anio_reciente", "anio_anterior", "concepto"], keep="last")
+    return df.sort_values(["anio_reciente", "concepto"]).reset_index(drop=True)
+
+
 # Frases fijas que el resumen ejecutivo repite todos los meses -- el numero
 # de unidades acumuladas (enero -> mes del informe) para cada tipo.
 _PATRONES_RESUMEN = {
@@ -291,4 +383,6 @@ def parsear_informe(ruta_pdf: Path, anio_informe: int, mes_informe: int) -> dict
     return {
         "serie_principal": serie,
         "resumen_por_tipo": extraer_resumen_por_tipo(paginas_texto, anio_informe, mes_informe),
+        "totales_anuales": extraer_totales_anuales(paginas_texto),
+        "variacion_interanual": extraer_variacion_interanual(paginas_texto),
     }

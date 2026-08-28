@@ -7,6 +7,12 @@ todo en data/aap_informes/:
 
 - serie_mensual.csv       (anio, mes, mes_nombre, unidades, informe_fuente)
 - resumen_por_tipo.csv    (anio_informe, mes_informe, tipo_vehiculo, unidades_acumuladas_enero_a_mes)
+- totales_anuales.csv     (anio, total_acumulado_a_mes_informe, total_anual) -- de la misma
+                          tabla "Año x Ene..Dic" de serie_mensual, las 2 columnas finales
+                          que esa no usa.
+- variacion_interanual.csv (anio_reciente, anio_anterior, concepto [Ene..Dic,
+                          Total_acumulado, Total_anual], var_pct) -- filas "Var. %"
+                          de la misma tabla.
 
 Correr:
     python src/aap_construir_base.py
@@ -40,7 +46,7 @@ def main(forzar_descarga: bool = False):
     )
     print(f"\n{df_informes['archivo_local'].notna().sum()} de {len(df_informes)} informes disponibles localmente.")
 
-    series, resumenes = [], []
+    series, resumenes, totales_anuales_lst, variaciones_lst = [], [], [], []
     for _, fila in df_informes.iterrows():
         # OJO: "not fila['archivo_local']" NO detecta NaN (bool(float('nan'))
         # es True en Python) -- hay que usar pd.isna() explicitamente, si no
@@ -60,6 +66,15 @@ def main(forzar_descarga: bool = False):
             series.append(serie)
 
         resumenes.append(resultado["resumen_por_tipo"])
+
+        informe_fuente = f"{fila['anio']}-{fila['mes']:02d}"
+        totales = resultado.get("totales_anuales")
+        if totales is not None and not totales.empty:
+            totales_anuales_lst.append(totales.assign(informe_fuente=informe_fuente))
+        variacion = resultado.get("variacion_interanual")
+        if variacion is not None and not variacion.empty:
+            variaciones_lst.append(variacion.assign(informe_fuente=informe_fuente))
+
         print(f"  [{fila['anio']}-{fila['mes']:02d}] {len(serie)} filas de serie, resumen extraido")
 
     serie_final = pd.concat(series, ignore_index=True) if series else pd.DataFrame()
@@ -79,8 +94,26 @@ def main(forzar_descarga: bool = False):
     serie_final.to_csv(ruta_serie, index=False, encoding="utf-8-sig")
     resumen_final.to_csv(ruta_resumen, index=False, encoding="utf-8-sig")
 
+    totales_final = pd.concat(totales_anuales_lst, ignore_index=True) if totales_anuales_lst else pd.DataFrame()
+    if not totales_final.empty:
+        totales_final = totales_final.sort_values("informe_fuente").drop_duplicates(
+            subset=["anio"], keep="last"
+        ).sort_values("anio").reset_index(drop=True)
+    ruta_totales = CARPETA_PROCESADO / "totales_anuales.csv"
+    totales_final.to_csv(ruta_totales, index=False, encoding="utf-8-sig")
+
+    variacion_final = pd.concat(variaciones_lst, ignore_index=True) if variaciones_lst else pd.DataFrame()
+    if not variacion_final.empty:
+        variacion_final = variacion_final.sort_values("informe_fuente").drop_duplicates(
+            subset=["anio_reciente", "anio_anterior", "concepto"], keep="last"
+        ).sort_values(["anio_reciente", "concepto"]).reset_index(drop=True)
+    ruta_variacion = CARPETA_PROCESADO / "variacion_interanual.csv"
+    variacion_final.to_csv(ruta_variacion, index=False, encoding="utf-8-sig")
+
     print(f"\n{len(serie_final)} filas -> {ruta_serie}")
     print(f"{len(resumen_final)} filas -> {ruta_resumen}")
+    print(f"{len(totales_final)} filas -> {ruta_totales}")
+    print(f"{len(variacion_final)} filas -> {ruta_variacion}")
 
 
 if __name__ == "__main__":
