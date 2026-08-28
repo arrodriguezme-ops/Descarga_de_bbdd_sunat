@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "sunat-dashboard",
+      "runtimeExecutable": "C:\\Users\\angelo\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "runtimeArgs": ["-m", "streamlit", "run", "app.py"],
+      "port": 8501
+    }
+  ]
+}
