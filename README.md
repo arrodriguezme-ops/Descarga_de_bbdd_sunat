@@ -1,13 +1,15 @@
 # Descarga_de_bbdd_sunat
 
-Panel en Streamlit con 8 servicios de datos públicos del Perú: importaciones/
+Panel en Streamlit con 9 servicios de datos públicos del Perú: importaciones/
 exportaciones por subpartida (SUNAT), clima diario (NASA POWER), concentración
 de mercado e IHH para análisis de fusiones, precios mayoristas (SISAP-MIDAGRI),
 minerales y producción mundial (USGS), la Cartera de Proyectos de Inversión
 Minera (MINEM), herramientas de PDF (conversión a Markdown, OCR, y búsqueda de
 normas por palabra clave en reguladores peruanos), y estadísticas del sector
-automotor (AAP). Además, dos temas de color propios (ARRM/CE) seleccionables
-desde la barra lateral.
+automotor (AAP) -- en dos servicios: la serie mensual principal, y un detalle
+exhaustivo (por segmento, marca, color, origen, combustible, crédito, mapa
+regional). Además, dos temas de color propios (ARRM/CE) seleccionables desde
+la barra lateral.
 
 ## Inicio rápido
 
@@ -21,7 +23,7 @@ streamlit run app.py
 ```
 
 Con eso ya abre el panel (`http://localhost:8501`) con la pantalla de inicio
-y los 8 servicios navegables desde la barra lateral. **Ningún dato viene
+y los 9 servicios navegables desde la barra lateral. **Ningún dato viene
 incluido en el repo** (la carpeta `data/` se genera sola y está en
 `.gitignore` -- son bases grandes que no tiene sentido versionar en git):
 cada servicio, si no encuentra su archivo, te muestra en pantalla el comando
@@ -37,7 +39,8 @@ opcionales, corre solo los que te interesen):
 | ⛏️ Minerales USGS | `python descargar_usgs_minerales.py`<br>`python src/usgs_limpiar.py` | ~10 min |
 | 🇵🇪 Cartera Minera MINEM | `python src/minem_construir_datos.py` | segundos |
 | 🗂️ Herramientas de PDF | *(ninguno -- pero necesita Tesseract OCR instalado, ver más abajo)* | -- |
-| 🚗 Sector Automotor AAP | `python src/aap_construir_base.py` | ~10-15 min |
+| 🚗 Sector Automotor AAP | `python src/aap_construir_base.py` | ~10-15 min (descarga + parseo de ~80 PDF) |
+| 🔧 Sector Automotor AAP -- Detalle | `python src/aap_construir_detalle_paralelo.py`<br>`python src/aap_construir_bases_finales.py` | ~5-25 min según núcleos *(requiere haber corrido el de arriba primero)* |
 
 El resto de este documento detalla cada servicio.
 
@@ -84,10 +87,16 @@ src/
   vista_pdf_herramientas.py       # servicio 7: PDF -> Markdown, OCR -> PDF, búsqueda de normas en gob.pe
   pdf_herramientas.py             # conversores PDF->MD (pymupdf4llm) y OCR->PDF (ocrmypdf)
   gobpe_buscador.py                # busca palabras clave en el buscador oficial de normas de gob.pe
-  vista_aap.py                    # servicio 8: estadísticas del sector automotor (AAP)
+  vista_aap.py                    # servicio 8: serie mensual + totales anuales + var.% del sector automotor (AAP)
   aap_scraper.py                  # descubre y descarga los informes mensuales de aap.org.pe
-  aap_parser.py                   # extrae la serie mensual y el resumen por tipo de vehículo de cada informe
-  aap_construir_base.py           # orquesta descarga + parseo de todos los informes de AAP
+  aap_parser.py                   # extrae serie mensual, resumen por tipo, totales anuales y var.% interanual
+  aap_construir_base.py           # orquesta descarga + parseo de todos los informes de AAP (servicio 8)
+  vista_aap_detalle.py            # servicio 9: detalle exhaustivo (segmento, marca, color, origen, mapa...)
+  aap_tablas_detalle.py           # extractores de "máximo esfuerzo": tablas de grilla, ranking por marca,
+                                   #   barras por segmento, mapa regional, líneas sin etiquetar (best-effort)
+  aap_construir_detalle.py        # orquesta aap_tablas_detalle.py sobre los ~80 informes (versión secuencial)
+  aap_construir_detalle_paralelo.py # misma orquestación, en paralelo (multiprocessing.Pool) -- más rápida
+  aap_construir_bases_finales.py  # arma las bases finales limpias del servicio 9 a partir del detalle crudo
   temas.py                        # temas de color ARRM / CE seleccionables desde la barra lateral
 descargar_sisap_completo.py       # descarga masiva de precios/volúmenes mayoristas del SISAP (MIDAGRI)
 descargar_usgs_minerales.py       # descarga y parsea los reportes USGS Mineral Commodity Summaries (1996-2026)
@@ -263,23 +272,62 @@ Tres pestañas:
 ### 🚗 Sector Automotor AAP
 
 Descarga los ~80 informes mensuales de la Asociación Automotriz del Perú
-(aap.org.pe) desde 2020 hasta el mes más reciente, y extrae:
+(aap.org.pe) desde 2020 hasta el mes más reciente, y extrae, de la tabla
+"Año x Ene..Dic" (la única con formato lo bastante consistente para
+parsear de forma confiable en las ~80 ediciones):
 
 - La **serie mensual histórica** (venta de vehículos livianos + pesados,
-  por año/mes) -- la única tabla del documento con formato lo bastante
-  consistente para parsear de forma confiable en las ~80 ediciones.
+  por año/mes).
+- El **total anual** y el **acumulado al mes del informe** (las 2
+  columnas finales de esa misma tabla).
+- La **variación % interanual** mes a mes (las filas "Var. %" de la
+  misma tabla).
 - Los **totales acumulados por tipo de vehículo** (livianos/pesados/
   menores) que cada informe reporta en su resumen ejecutivo.
 
 Filtros por año y tipo de vehículo, gráficos, y descarga de la base
-completa o filtrada (CSV/Excel). Las tablas de ranking por marca, región,
-color y origen **no se parsean automáticamente** (el layout cambia mucho
-entre ediciones y no sale confiable con extracción de tablas) -- para eso,
-los ~80 PDF originales quedan descargados en `data/aap_informes/raw/` para
-revisar a mano.
+completa o filtrada (CSV/Excel).
 
 ```bash
 python src/aap_construir_base.py
+```
+
+### 🔧 Sector Automotor AAP — Detalle
+
+Segundo servicio, sobre los mismos ~80 PDF: extracción de "máximo esfuerzo"
+de todo lo demás que traen los informes desde ~2022 en adelante (formato
+"revista" de 46-77 páginas -- 2020-2021 son documentos cortos sin estas
+secciones). Cinco tipos de contenido, cada uno con su propia estrategia de
+extracción porque el layout de cada uno es distinto:
+
+- **Ventas anuales por segmento** (Automóviles/SW, Camionetas, Pick-up,
+  SUV, Camiones y tracto, Minibús/Ómnibus, Motos, Trimotos, Segmento de
+  lujo) -- gráficos de barra totalmente etiquetados, se leen por posición
+  ordinal contra el eje de años.
+- **Ranking por marca**, por categoría (livianos, camiones, tractocamiones,
+  minibús/ómnibus, motos, trimotos, electrificados, transferencias de
+  seminuevos) -- tarjetas numeradas, se agrupan por proximidad geométrica
+  al número de rank.
+- **Tablas de detalle** (por color, por origen de fabricación, motos por
+  combustible y cilindrada, segmento de lujo, electrificados, saldo de
+  créditos vehiculares, importación de suministros) -- tablas de grilla
+  reales, alineadas por posición de columna entre ediciones (el texto del
+  encabezado varía levemente entre informes).
+- **Mapa por oficina registral** -- best-effort, cobertura parcial (cada
+  oficina es una caja de texto flotante sobre un mapa).
+- **Series de línea reconstruidas** (importaciones, financiamiento mes a
+  mes) -- estos gráficos solo traen el primer y último punto con texto
+  real; los meses intermedios se reconstruyen desde las coordenadas del
+  trazo vectorial del PDF, con columna `confianza` ('alta' solo en los
+  extremos, 'baja' -- error medido de hasta ~20% -- en el resto).
+
+Todas las tablas pasan por un filtro de outliers (MAD + rango plausible
+por segmento) antes de llegar al panel, para no mostrar números que se
+colaron de una etiqueta vecina mal leída.
+
+```bash
+python src/aap_construir_detalle_paralelo.py   # o aap_construir_detalle.py (mas lento, sin paralelizar)
+python src/aap_construir_bases_finales.py
 ```
 
 ## 3. Descarga masiva (notebook)
