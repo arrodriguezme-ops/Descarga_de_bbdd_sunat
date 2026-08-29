@@ -1,15 +1,16 @@
 # Descarga_de_bbdd_sunat
 
-Panel en Streamlit con 9 servicios de datos públicos del Perú: importaciones/
-exportaciones por subpartida (SUNAT), clima diario (NASA POWER), concentración
-de mercado e IHH para análisis de fusiones, precios mayoristas (SISAP-MIDAGRI),
-minerales y producción mundial (USGS), la Cartera de Proyectos de Inversión
-Minera (MINEM), herramientas de PDF (conversión a Markdown, OCR, y búsqueda de
-normas por palabra clave en reguladores peruanos), y estadísticas del sector
+Panel en Streamlit con 10 servicios de datos públicos del Perú: importaciones/
+exportaciones por subpartida (SUNAT, con búsqueda por texto o por sector/
+mercado), clima diario (NASA POWER), concentración de mercado e IHH para
+análisis de fusiones, precios mayoristas (SISAP-MIDAGRI), minerales y
+producción mundial (USGS), la Cartera de Proyectos de Inversión Minera
+(MINEM), herramientas de PDF (conversión a Markdown, OCR, y búsqueda de
+normas por palabra clave en reguladores peruanos), estadísticas del sector
 automotor (AAP) -- en dos servicios: la serie mensual principal, y un detalle
 exhaustivo (por segmento, marca, color, origen, combustible, crédito, mapa
-regional). Además, dos temas de color propios (ARRM/CE) seleccionables desde
-la barra lateral.
+regional) --, y precios referenciales de vehículos (MEF). Además, dos temas
+de color propios (ARRM/CE) seleccionables desde la barra lateral.
 
 ## Inicio rápido
 
@@ -23,10 +24,11 @@ streamlit run app.py
 ```
 
 Con eso ya abre el panel (`http://localhost:8501`) con la pantalla de inicio
-y los 9 servicios navegables desde la barra lateral. **Las bases ya
-procesadas y livianas SÍ vienen incluidas en el repo** (en Parquet, ~45 MB
-en total) -- Sector Automotor AAP, Minerales USGS, Precios SISAP y Cartera
-Minera MINEM abren con datos reales sin correr nada. Lo que **no** viene
+y los 10 servicios navegables desde la barra lateral. **Las bases ya
+procesadas y livianas SÍ vienen incluidas en el repo** (en Parquet, ~46 MB
+en total) -- Sector Automotor AAP, Minerales USGS, Precios SISAP, Cartera
+Minera MINEM y Precios de Vehículos MEF abren con datos reales sin correr
+nada. Lo que **no** viene
 incluido son los datos crudos/intermedios de cada fuente (PDFs originales,
 CSVs de ~1 GB, DBF descargados) -- esos son pesados o fáciles de
 regenerar, y quedan en `.gitignore`. Si igual quieres regenerar la base de
@@ -46,6 +48,7 @@ opcionales, corre solo los que te interesen):
 | 🗂️ Herramientas de PDF | No aplica | *(ninguno -- pero necesita Tesseract OCR, ver más abajo)* | -- |
 | 🚗 Sector Automotor AAP | **Sí** (Parquet incluido) | `python src/aap_construir_base.py` | ~10-15 min (descarga + parseo de ~80 PDF) |
 | 🔧 Sector Automotor AAP -- Detalle | **Sí** (Parquet incluido) | `python src/aap_construir_detalle_paralelo.py`<br>`python src/aap_construir_bases_finales.py` | ~5-25 min según núcleos *(requiere haber corrido el de arriba primero)* |
+| 🚙 Precios de Vehículos MEF | **Sí** (Parquet incluido) | `python src/mef_construir_precios.py` | segundos *(solo si `data/BBDD_precios.csv` cambia -- no hay scraper, es un archivo fuente fijo)* |
 
 El resto de este documento detalla cada servicio.
 
@@ -117,6 +120,8 @@ src/
   aap_construir_detalle.py        # orquesta aap_tablas_detalle.py sobre los ~80 informes (versión secuencial)
   aap_construir_detalle_paralelo.py # misma orquestación, en paralelo (multiprocessing.Pool) -- más rápida
   aap_construir_bases_finales.py  # arma las bases finales limpias del servicio 9 a partir del detalle crudo
+  vista_mef_precios.py            # servicio 10: precios referenciales de vehiculos (MEF, 2008-2025)
+  mef_construir_precios.py        # limpia data/BBDD_precios.csv y lo deja en Parquet
   temas.py                        # temas de color ARRM / CE seleccionables desde la barra lateral
 descargar_sisap_completo.py       # descarga masiva de precios/volúmenes mayoristas del SISAP (MIDAGRI)
 descargar_usgs_minerales.py       # descarga y parsea los reportes USGS Mineral Commodity Summaries (1996-2026)
@@ -360,6 +365,29 @@ colaron de una etiqueta vecina mal leída.
 ```bash
 python src/aap_construir_detalle_paralelo.py   # o aap_construir_detalle.py (mas lento, sin paralelizar)
 python src/aap_construir_bases_finales.py
+```
+
+### 🚙 Precios de Vehículos MEF
+
+Tabla de valores referenciales de vehículos que publica el MEF (Ministerio
+de Economía y Finanzas) cada año desde 2008 hasta 2025 -- usada para
+valoración aduanera y tributaria (no es precio de mercado real, es el
+valor de referencia que usa el fisco). A diferencia de los demás
+servicios, esta base **no tiene scraper propio**: viene de
+`data/BBDD_precios.csv`, un archivo fuente que se agregó directo al repo.
+
+- Filtros por **grupo** (categoría vehicular: A1-A4, camiones, camionetas,
+  buses/ómnibus, remolcadores), **marca**, **modelo** y **rango de años**
+  -- cada filtro acota las opciones del siguiente (elegir una marca reduce
+  la lista de modelos a elegir).
+- Gráfico de evolución de precio: se pueden elegir **varios modelos a la
+  vez** (hasta 12) para compararlos en la misma línea de tiempo, más un
+  gráfico de barras comparando el último año del rango elegido.
+- Descarga en CSV, Excel o Parquet, tanto de la base completa (220 mil
+  filas) como de la selección filtrada.
+
+```bash
+python src/mef_construir_precios.py   # solo si data/BBDD_precios.csv cambia
 ```
 
 ## 3. Descarga masiva (notebook)

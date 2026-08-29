@@ -92,3 +92,11 @@ def render():
         "mapa por oficina registral y series de línea reconstruidas.",
         "Ir al Detalle AAP", "aap_detalle", "ir_aap_detalle",
     )
+    _tarjeta(
+        fila4[1], "🚙 Precios de Vehículos MEF",
+        "Tabla de valores referenciales de vehículos del MEF (2008-2025): "
+        "filtra por grupo, marca, modelo y rango de años; gráficos de "
+        "evolución de precio (varios modelos a la vez), y descarga de la "
+        "base completa o filtrada en CSV, Excel o Parquet.",
+        "Ir a Precios MEF", "mef_precios", "ir_mef_precios",
+    )
