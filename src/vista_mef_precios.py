@@ -52,6 +52,9 @@ def _exportar_bytes(df: pd.DataFrame, formato: str) -> bytes:
     return buffer.getvalue()
 
 
+UMBRAL_FILAS_EXCEL_LAZY = 20_000  # generar el .xlsx tarda ~47s con las 220 mil filas completas
+
+
 def _botones_descarga(df: pd.DataFrame, nombre_base: str, key_prefix: str):
     c1, c2, c3 = st.columns(3)
     with c1:
@@ -60,11 +63,34 @@ def _botones_descarga(df: pd.DataFrame, nombre_base: str, key_prefix: str):
             mime="text/csv", width="stretch", key=f"{key_prefix}_csv",
         )
     with c2:
-        st.download_button(
-            "⬇️ Excel", data=_exportar_bytes(df, "xlsx"), file_name=f"{nombre_base}.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            width="stretch", key=f"{key_prefix}_xlsx",
-        )
+        # OJO: st.download_button calcula "data" en CADA render de la
+        # pagina, no solo al hacer click -- con las 220 mil filas
+        # completas, to_excel() tarda ~47s, asi que generarlo siempre
+        # deja la pagina "colgada" ese tiempo apenas alguien entra al
+        # servicio. Con muchas filas, el Excel se genera solo si el
+        # usuario lo pide explicitamente (con spinner); con pocas filas
+        # (la seleccion filtrada tipica), se genera directo, es rapido.
+        if len(df) > UMBRAL_FILAS_EXCEL_LAZY:
+            if st.button(
+                f"Generar Excel ({len(df):,} filas, puede tardar ~{len(df)/4700:.0f}s)",
+                width="stretch", key=f"{key_prefix}_xlsx_generar",
+            ):
+                with st.spinner("Generando Excel..."):
+                    datos_xlsx = _exportar_bytes(df, "xlsx")
+                st.session_state[f"{key_prefix}_xlsx_bytes"] = datos_xlsx
+            if f"{key_prefix}_xlsx_bytes" in st.session_state:
+                st.download_button(
+                    "⬇️ Excel", data=st.session_state[f"{key_prefix}_xlsx_bytes"],
+                    file_name=f"{nombre_base}.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    width="stretch", key=f"{key_prefix}_xlsx",
+                )
+        else:
+            st.download_button(
+                "⬇️ Excel", data=_exportar_bytes(df, "xlsx"), file_name=f"{nombre_base}.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                width="stretch", key=f"{key_prefix}_xlsx",
+            )
     with c3:
         st.download_button(
             "⬇️ Parquet", data=_exportar_bytes(df, "parquet"), file_name=f"{nombre_base}.parquet",
