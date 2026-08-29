@@ -162,6 +162,9 @@ def _lanzar_job(subpartida: str, descripcion: str, regi: str, anios: list[int]):
     return job_id
 
 
+ARCHIVO_CAPITULOS = RAIZ / "data" / "sunat_capitulos_secciones.csv"
+
+
 @st.cache_data
 def _cargar_subpartidas():
     if not ARCHIVO_SUBPARTIDAS.exists():
@@ -170,7 +173,24 @@ def _cargar_subpartidas():
     df["codigo_subpartida"] = df["codigo_subpartida"].str.strip()
     df["descripcion"] = df["descripcion"].str.strip()
     df["etiqueta"] = df["codigo_subpartida"] + " -- " + df["descripcion"]
+    # capitulo = 2 primeros digitos del codigo de 10 -- permite agrupar por
+    # sector/mercado (ver _cargar_capitulos) sin tener que guardar la
+    # columna en el CSV de subpartidas.
+    df["capitulo"] = df["codigo_subpartida"].str[:2]
     return df.reset_index(drop=True)
+
+
+@st.cache_data
+def _cargar_capitulos():
+    """Indice Seccion (sector) -> Capitulo (subsector) del Arancel de
+    Aduanas, para la busqueda alternativa 'por sector/mercado'. Ver
+    data/sunat_capitulos_secciones.csv (generado una vez a partir del
+    Arancel de Aduanas 2022, no cambia salvo que la nomenclatura HS se
+    revise -- no hace falta regenerarlo en cada corrida)."""
+    if not ARCHIVO_CAPITULOS.exists():
+        return None
+    df = pd.read_csv(ARCHIVO_CAPITULOS, dtype={"capitulo": str}, encoding="utf-8-sig")
+    return df.sort_values(["seccion_numero", "capitulo"]).reset_index(drop=True)
 
 
 @st.fragment(run_every=4)
@@ -227,6 +247,74 @@ def _panel_estado():
             )
 
 
+def _selector_por_texto(df: pd.DataFrame) -> pd.DataFrame:
+    """Modo 'por texto o codigo': busqueda difusa + multiselect. Devuelve
+    el subconjunto de df elegido por el usuario (0 o mas filas)."""
+    consulta = st.text_input(
+        "Escribe el producto o el codigo (ej. 'cobre concentrado', 'vino tinto', '2603000000')",
+        key="consulta_texto",
+    )
+
+    if consulta.strip():
+        coincidencias = process.extract(
+            consulta, df["etiqueta"].tolist(), scorer=fuzz.WRatio, limit=MAX_SUGERENCIAS
+        )
+        indices = [idx for _, score, idx in coincidencias]
+        opciones_df = df.iloc[indices]
+        ayuda = f"Mostrando las {len(opciones_df)} coincidencias mas parecidas a tu busqueda."
+    else:
+        opciones_df = df
+        ayuda = f"Sin filtro: las {len(df):,} subpartidas del arancel. Escribe arriba para acotar."
+
+    etiquetas_elegidas = st.multiselect(
+        "Subpartida(s) (codigo -- descripcion) -- puedes elegir varias:",
+        options=opciones_df["etiqueta"].tolist(),
+        help=ayuda,
+        key="selector_subpartida_texto",
+    )
+    return opciones_df[opciones_df["etiqueta"].isin(etiquetas_elegidas)]
+
+
+def _selector_por_sector(df: pd.DataFrame) -> pd.DataFrame:
+    """Modo 'por sector/mercado': Seccion (sector, ej. 'Productos
+    Minerales') -> Capitulo (subsector, ej. 'Minerales metaliferos') ->
+    multiselect de subpartidas dentro de ese capitulo. Usa la
+    clasificacion oficial del Arancel de Aduanas (21 Secciones, 98
+    Capitulos) en vez de una taxonomia inventada."""
+    capitulos = _cargar_capitulos()
+    if capitulos is None:
+        st.warning(
+            f"No se encontro '{ARCHIVO_CAPITULOS.relative_to(RAIZ)}' -- la busqueda por sector no esta "
+            "disponible, pero la busqueda por texto/codigo si funciona."
+        )
+        return df.iloc[0:0]
+
+    secciones = capitulos[["seccion_numero", "seccion_romano", "seccion_nombre"]].drop_duplicates().sort_values("seccion_numero")
+    etiquetas_seccion = [f"{r.seccion_romano} -- {r.seccion_nombre}" for r in secciones.itertuples()]
+    seccion_elegida = st.selectbox("Sector (Sección del Arancel):", options=etiquetas_seccion, key="selector_seccion")
+    seccion_num = secciones.iloc[etiquetas_seccion.index(seccion_elegida)]["seccion_numero"]
+
+    caps_de_la_seccion = capitulos[capitulos["seccion_numero"] == seccion_num]
+    etiquetas_cap = [f"Cap. {r.capitulo} -- {r.capitulo_descripcion}" for r in caps_de_la_seccion.itertuples()]
+    cap_elegido = st.selectbox(
+        "Subsector (Capítulo) -- elige uno o más para tener detalle:",
+        options=etiquetas_cap, key="selector_capitulo",
+    )
+    capitulo_num = caps_de_la_seccion.iloc[etiquetas_cap.index(cap_elegido)]["capitulo"]
+
+    opciones_df = df[df["capitulo"] == capitulo_num]
+    if opciones_df.empty:
+        st.info("Este capítulo no tiene subpartidas en la base cargada.")
+        return opciones_df
+
+    etiquetas_elegidas = st.multiselect(
+        f"Subpartida(s) dentro de este capítulo ({len(opciones_df)} disponibles) -- puedes elegir varias:",
+        options=opciones_df["etiqueta"].tolist(),
+        key="selector_subpartida_sector",
+    )
+    return opciones_df[opciones_df["etiqueta"].isin(etiquetas_elegidas)]
+
+
 def render():
     st.title("Buscador y descarga de importaciones por subpartida -- SUNAT")
 
@@ -239,56 +327,28 @@ def render():
         )
         st.stop()
 
-    if "codigo_seleccionado" not in st.session_state:
-        st.session_state.codigo_seleccionado = df["codigo_subpartida"].iloc[0]
-
     col_izq, col_der = st.columns([2.2, 1])
 
     with col_izq:
-        st.subheader("1. Elige la subpartida")
-        consulta = st.text_input(
-            "Escribe el producto o el codigo (ej. 'cobre concentrado', 'vino tinto', '2603000000')",
-            key="consulta_texto",
+        st.subheader("1. Elige la(s) subpartida(s)")
+        modo = st.radio(
+            "Modo de búsqueda", options=["Por texto o código", "Por sector / mercado"],
+            horizontal=True, key="modo_busqueda_sunat",
         )
-
-        if consulta.strip():
-            coincidencias = process.extract(
-                consulta, df["etiqueta"].tolist(), scorer=fuzz.WRatio, limit=MAX_SUGERENCIAS
-            )
-            indices = [idx for _, score, idx in coincidencias]
-            opciones_df = df.iloc[indices]
-            ayuda = f"Mostrando las {len(opciones_df)} coincidencias mas parecidas a tu busqueda."
+        if modo == "Por texto o código":
+            elegidas = _selector_por_texto(df)
         else:
-            opciones_df = df
-            ayuda = f"Sin filtro: las {len(df):,} subpartidas del arancel. Escribe arriba para acotar."
+            elegidas = _selector_por_sector(df)
 
-        etiquetas = opciones_df["etiqueta"].tolist()
-        etiqueta_actual = opciones_df.loc[
-            opciones_df["codigo_subpartida"] == st.session_state.codigo_seleccionado, "etiqueta"
-        ]
-        idx_inicial = etiquetas.index(etiqueta_actual.iloc[0]) if len(etiqueta_actual) else 0
-
-        etiqueta_elegida = st.selectbox(
-            "Subpartida (codigo -- descripcion):",
-            options=etiquetas,
-            index=idx_inicial,
-            help=ayuda,
-            key="selector_subpartida",
-        )
-
-        if etiqueta_elegida:
-            st.session_state.codigo_seleccionado = opciones_df.loc[
-                opciones_df["etiqueta"] == etiqueta_elegida, "codigo_subpartida"
-            ].iloc[0]
-
-        fila = df[df["codigo_subpartida"] == st.session_state.codigo_seleccionado].iloc[0]
-        m1, m2 = st.columns([1, 3])
-        with m1:
-            st.metric("Codigo", fila["codigo_subpartida"])
-        with m2:
-            st.write(fila["descripcion"])
-            if "arancel_advalorem" in df.columns and pd.notna(fila.get("arancel_advalorem")):
-                st.caption(f"Arancel Ad Valorem: {fila['arancel_advalorem']}%")
+        if elegidas.empty:
+            st.info("Elige al menos una subpartida arriba para continuar.")
+        else:
+            st.dataframe(
+                elegidas[["codigo_subpartida", "descripcion"]].rename(
+                    columns={"codigo_subpartida": "Código", "descripcion": "Descripción"}
+                ),
+                hide_index=True, width="stretch",
+            )
 
         st.divider()
         st.subheader("2. Descarga de importaciones en SUNAT")
@@ -306,20 +366,27 @@ def render():
             )
 
         st.caption(
-            "Al lanzar, se mandan de una sola vez las solicitudes de TODOS los "
-            "anios del rango, y se sondean en conjunto -- corre en segundo plano, "
-            "asi que puedes seguir usando la pagina (o cerrarla) mientras espera a SUNAT."
+            "Al lanzar, se manda una corrida por cada subpartida elegida (con las "
+            "solicitudes de TODOS los anios del rango de una sola vez, sondeadas en "
+            "conjunto) -- todas corren en segundo plano y en paralelo entre si, asi "
+            "que puedes seguir usando la pagina (o cerrarla) mientras esperan a SUNAT."
         )
 
-        lanzar = st.button("Descargar de SUNAT", type="primary", width="stretch")
+        lanzar = st.button(
+            "Descargar de SUNAT", type="primary", width="stretch", disabled=elegidas.empty,
+        )
 
         if lanzar:
             if anio_inicio > anio_fin:
                 st.error("El anio de inicio no puede ser mayor que el anio de fin.")
             else:
                 anios = list(range(int(anio_inicio), int(anio_fin) + 1))
-                _lanzar_job(st.session_state.codigo_seleccionado, fila["descripcion"], regi, anios)
-                st.success(f"Descarga lanzada para {len(anios)} anio(s). Revisa el estado a la derecha.")
+                for _, fila in elegidas.iterrows():
+                    _lanzar_job(fila["codigo_subpartida"], fila["descripcion"], regi, anios)
+                st.success(
+                    f"Descarga lanzada para {len(elegidas)} subpartida(s) x {len(anios)} año(s). "
+                    "Revisa el estado a la derecha."
+                )
 
     with col_der:
         st.subheader("Estado de las descargas")

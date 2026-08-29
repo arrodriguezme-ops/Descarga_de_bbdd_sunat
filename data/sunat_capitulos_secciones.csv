@@ -1,0 +1,99 @@
+﻿capitulo,capitulo_descripcion,seccion_numero,seccion_romano,seccion_nombre
+01,Animales vivos,1,I,Animales Vivos Y Productos Del Reino Animal
+02,Carne y despojos comestibles,1,I,Animales Vivos Y Productos Del Reino Animal
+03,"Pescados y crustáceos, moluscos y demás invertebrados acuáticos",1,I,Animales Vivos Y Productos Del Reino Animal
+04,"Leche y productos lácteos; huevos de ave; miel natural; productos comestibles de origen animal, no expresados ni comprendidos en otra parte",1,I,Animales Vivos Y Productos Del Reino Animal
+05,Los demás productos de origen animal no expresados ni comprendidos en otra parte,1,I,Animales Vivos Y Productos Del Reino Animal
+06,Plantas vivas y productos de la floricultura,2,II,Productos Del Reino Vegetal
+07,"Hortalizas, plantas, raíces y tubérculos alimenticios",2,II,Productos Del Reino Vegetal
+08,"Frutas y frutos comestibles; cortezas de agrios (cítricos), melones o sandías",2,II,Productos Del Reino Vegetal
+09,"Café, té, yerba mate y especias",2,II,Productos Del Reino Vegetal
+10,Cereales,2,II,Productos Del Reino Vegetal
+11,Productos de la molinería; malta; almidón y fécula; inulina; gluten de trigo,2,II,Productos Del Reino Vegetal
+12,Semillas y frutos oleaginosos; semillas y frutos diversos; plantas industriales o medicinales; paja y forraje,2,II,Productos Del Reino Vegetal
+13,"Gomas, resinas y demás jugos y extractos vegetales",2,II,Productos Del Reino Vegetal
+14,"Materias trenzables y demás productos de origen vegetal, no expresados ni comprendidos en otra parte",2,II,Productos Del Reino Vegetal
+15,Grasas y aceites animales o vegetales o de origen microbiano; productos de su desdoblamiento; grasas alimenticias elaboradas; ceras de origen animal o vegetal,3,III,Grasas Y Aceites Animales O Vegetales O De Origen Microbiano; Productos De Su Desdoblamiento; Grasas Alimenticias Elaboradas; Ceras De Origen Animal O Vegetal
+16,"Preparaciones de carne, pescado o de crustáceos, moluscos o demás invertebrados acuáticos, o de insectos",4,IV,"Productos De Las Industrias Alimentarias; Bebidas, Líquidos Alcohólicos Y Vinagre; Tabaco Y Sucedáneos Del Tabaco Elaborados Productos, Incluso Con Nicotina, Destinados Para La Inhalación Sin Combusible; Otros Productos Que Contengan Nicotina Destinados Para La Absorción De Nicotina En El Cuerpo Humano."
+17,Azúcares y artículos de confitería,4,IV,"Productos De Las Industrias Alimentarias; Bebidas, Líquidos Alcohólicos Y Vinagre; Tabaco Y Sucedáneos Del Tabaco Elaborados Productos, Incluso Con Nicotina, Destinados Para La Inhalación Sin Combusible; Otros Productos Que Contengan Nicotina Destinados Para La Absorción De Nicotina En El Cuerpo Humano."
+18,Cacao y sus preparaciones,4,IV,"Productos De Las Industrias Alimentarias; Bebidas, Líquidos Alcohólicos Y Vinagre; Tabaco Y Sucedáneos Del Tabaco Elaborados Productos, Incluso Con Nicotina, Destinados Para La Inhalación Sin Combusible; Otros Productos Que Contengan Nicotina Destinados Para La Absorción De Nicotina En El Cuerpo Humano."
+19,"Preparaciones a base de cereales, harina, almidón, fécula o leche; productos de pastelería",4,IV,"Productos De Las Industrias Alimentarias; Bebidas, Líquidos Alcohólicos Y Vinagre; Tabaco Y Sucedáneos Del Tabaco Elaborados Productos, Incluso Con Nicotina, Destinados Para La Inhalación Sin Combusible; Otros Productos Que Contengan Nicotina Destinados Para La Absorción De Nicotina En El Cuerpo Humano."
+20,"Preparaciones de hortalizas, frutas u otros frutos o demás partes de plantas",4,IV,"Productos De Las Industrias Alimentarias; Bebidas, Líquidos Alcohólicos Y Vinagre; Tabaco Y Sucedáneos Del Tabaco Elaborados Productos, Incluso Con Nicotina, Destinados Para La Inhalación Sin Combusible; Otros Productos Que Contengan Nicotina Destinados Para La Absorción De Nicotina En El Cuerpo Humano."
+21,Preparaciones alimenticias diversas,4,IV,"Productos De Las Industrias Alimentarias; Bebidas, Líquidos Alcohólicos Y Vinagre; Tabaco Y Sucedáneos Del Tabaco Elaborados Productos, Incluso Con Nicotina, Destinados Para La Inhalación Sin Combusible; Otros Productos Que Contengan Nicotina Destinados Para La Absorción De Nicotina En El Cuerpo Humano."
+22,"Bebidas, líquidos alcohólicos y vinagre",4,IV,"Productos De Las Industrias Alimentarias; Bebidas, Líquidos Alcohólicos Y Vinagre; Tabaco Y Sucedáneos Del Tabaco Elaborados Productos, Incluso Con Nicotina, Destinados Para La Inhalación Sin Combusible; Otros Productos Que Contengan Nicotina Destinados Para La Absorción De Nicotina En El Cuerpo Humano."
+23,Residuos y desperdicios de las industrias alimentarias; alimentos preparados para animales,4,IV,"Productos De Las Industrias Alimentarias; Bebidas, Líquidos Alcohólicos Y Vinagre; Tabaco Y Sucedáneos Del Tabaco Elaborados Productos, Incluso Con Nicotina, Destinados Para La Inhalación Sin Combusible; Otros Productos Que Contengan Nicotina Destinados Para La Absorción De Nicotina En El Cuerpo Humano."
+24,"Tabaco y sucedáneos del tabaco elaborados; productos, incluso con nicotina, destinados para la inhalación sin combustión; otros productos que contengan nicotina destinados para la absorción de nicotina en el cuerpo humano",4,IV,"Productos De Las Industrias Alimentarias; Bebidas, Líquidos Alcohólicos Y Vinagre; Tabaco Y Sucedáneos Del Tabaco Elaborados Productos, Incluso Con Nicotina, Destinados Para La Inhalación Sin Combusible; Otros Productos Que Contengan Nicotina Destinados Para La Absorción De Nicotina En El Cuerpo Humano."
+25,"Sal; azufre; tierras y piedras; yesos, cales y cementos",5,V,Productos Minerales
+26,"Minerales metalíferos, escorias y cenizas",5,V,Productos Minerales
+27,"Combustibles minerales, aceites minerales y productos de su destilación; materias bituminosas; ceras minerales",5,V,Productos Minerales
+28,"Productos químicos inorgánicos; compuestos inorgánicos u orgánicos de metal precioso, de elementos radiactivos, de metales de las tierras raras o de isótopos",6,VI,Productos De Las Industrias Químicas O De Las Industrias Conexas
+29,Productos químicos orgánicos,6,VI,Productos De Las Industrias Químicas O De Las Industrias Conexas
+30,Productos farmacéuticos,6,VI,Productos De Las Industrias Químicas O De Las Industrias Conexas
+31,Abonos,6,VI,Productos De Las Industrias Químicas O De Las Industrias Conexas
+32,Extractos curtientes o tintóreos; taninos y sus derivados; pigmentos y demás materias colorantes; pinturas y barnices; mástiques; tintas,6,VI,Productos De Las Industrias Químicas O De Las Industrias Conexas
+33,"Aceites esenciales y resinoides; preparaciones de perfumería, de tocador o de cosmética",6,VI,Productos De Las Industrias Químicas O De Las Industrias Conexas
+34,"Jabón, agentes de superficie orgánicos, preparaciones para lavar, preparaciones lubricantes, ceras artificiales, ceras preparadas, productos de limpieza, velas y artículos similares, pastas para modelar, «ceras para odontología» y preparaciones para odontología a base de yeso fraguable",6,VI,Productos De Las Industrias Químicas O De Las Industrias Conexas
+35,Materias albuminoideas; productos a base de almidón o de fécula modificados; colas; enzimas,6,VI,Productos De Las Industrias Químicas O De Las Industrias Conexas
+36,Pólvora y explosivos; artículos de pirotecnia; fósforos (cerillas); aleaciones pirofóricas; materias inflamables,6,VI,Productos De Las Industrias Químicas O De Las Industrias Conexas
+37,Productos fotográficos o cinematográficos,6,VI,Productos De Las Industrias Químicas O De Las Industrias Conexas
+38,Productos diversos de las industrias químicas,6,VI,Productos De Las Industrias Químicas O De Las Industrias Conexas
+39,Plástico y sus manufacturas,7,VII,Plástico Y Sus Manufacturas; Caucho Y Sus Manufacturas
+40,Caucho y sus manufacturas,7,VII,Plástico Y Sus Manufacturas; Caucho Y Sus Manufacturas
+41,Pieles (excepto la peletería) y cueros,8,VIII,"Pieles, Cueros, Peletería Y Manufacturas De Estas Materias; Artículos De Talabartería O Guarnicionería; Artículos De Viaje, Bolsos De Mano (Carteras) Y Continentes Similares; Manufacturas De Tripa"
+42,"Manufacturas de cuero; artículos de talabartería o guarnicionería; artículos de viaje, bolsos de mano (carteras) y continentes similares; manufacturas de tripa",8,VIII,"Pieles, Cueros, Peletería Y Manufacturas De Estas Materias; Artículos De Talabartería O Guarnicionería; Artículos De Viaje, Bolsos De Mano (Carteras) Y Continentes Similares; Manufacturas De Tripa"
+43,Peletería y confecciones de peletería; peletería facticia o artificial,8,VIII,"Pieles, Cueros, Peletería Y Manufacturas De Estas Materias; Artículos De Talabartería O Guarnicionería; Artículos De Viaje, Bolsos De Mano (Carteras) Y Continentes Similares; Manufacturas De Tripa"
+44,"Madera, carbón vegetal y manufacturas de madera",9,IX,"Madera, Carbón Vegetal Y Manufacturas De Madera; Corcho Y Sus Manufacturas; Manufacturas De Espartería O Cestería"
+45,Corcho y sus manufacturas,9,IX,"Madera, Carbón Vegetal Y Manufacturas De Madera; Corcho Y Sus Manufacturas; Manufacturas De Espartería O Cestería"
+46,Manufacturas de espartería o cestería,9,IX,"Madera, Carbón Vegetal Y Manufacturas De Madera; Corcho Y Sus Manufacturas; Manufacturas De Espartería O Cestería"
+47,Pasta de madera o de las demás materias fibrosas celulósicas; papel o cartón para reciclar (desperdicios y desechos),10,X,Pasta De Madera O De Las Demás Materias Fibrosas Celulósicas; Papel O Cartón Para Reciclar (Desperdicios Y Desechos); Papel O Cartón Y Sus Aplicaciones
+48,"Papel y cartón; manufacturas de pasta de celulosa, de papel o cartón",10,X,Pasta De Madera O De Las Demás Materias Fibrosas Celulósicas; Papel O Cartón Para Reciclar (Desperdicios Y Desechos); Papel O Cartón Y Sus Aplicaciones
+49,"Productos editoriales, de la prensa y de las demás industrias gráficas; textos manuscritos o mecanografiados y planos",10,X,Pasta De Madera O De Las Demás Materias Fibrosas Celulósicas; Papel O Cartón Para Reciclar (Desperdicios Y Desechos); Papel O Cartón Y Sus Aplicaciones
+50,Seda,11,XI,Materias Textiles Y Sus Manufacturas
+51,Lana y pelo fino u ordinario; hilados y tejidos de crin,11,XI,Materias Textiles Y Sus Manufacturas
+52,Algodón,11,XI,Materias Textiles Y Sus Manufacturas
+53,Las demás fibras textiles vegetales; hilados de papel y tejidos de hilados de papel,11,XI,Materias Textiles Y Sus Manufacturas
+54,Filamentos sintéticos o artificiales; tiras y formas similares de materia textil sintética o artificial,11,XI,Materias Textiles Y Sus Manufacturas
+55,Fibras sintéticas o artificiales discontinuas,11,XI,Materias Textiles Y Sus Manufacturas
+56,"Guata, fieltro y tela sin tejer; hilados especiales; cordeles, cuerdas y cordajes; artículos de cordelería",11,XI,Materias Textiles Y Sus Manufacturas
+57,"Alfombras y demás revestimientos para el suelo, de materia textil",11,XI,Materias Textiles Y Sus Manufacturas
+58,Tejidos especiales; superficies textiles con mechón insertado; encajes; tapicería; pasamanería; bordados,11,XI,Materias Textiles Y Sus Manufacturas
+59,"Telas impregnadas, recubiertas, revestidas o estratificadas; artículos técnicos de materia textil",11,XI,Materias Textiles Y Sus Manufacturas
+60,Tejidos de punto,11,XI,Materias Textiles Y Sus Manufacturas
+61,"Prendas y complementos (accesorios), de vestir, de punto",11,XI,Materias Textiles Y Sus Manufacturas
+62,"Prendas y complementos (accesorios), de vestir, excepto los de punto",11,XI,Materias Textiles Y Sus Manufacturas
+63,Los demás artículos textiles confeccionados; juegos; prendería y trapos,11,XI,Materias Textiles Y Sus Manufacturas
+64,"Calzado, polainas y artículos análogos; partes de estos artículos",12,XII,"Calzado, Sombreros Y Demás Tocados, Paraguas, Quitasoles, Bastones, Látigos, Fustas, Y Sus Partes; Plumas Preparadas Y Artículos De Plumas; Flores Artificiales; Manufacturas De Cabello"
+65,"Sombreros, demás tocados y sus partes",12,XII,"Calzado, Sombreros Y Demás Tocados, Paraguas, Quitasoles, Bastones, Látigos, Fustas, Y Sus Partes; Plumas Preparadas Y Artículos De Plumas; Flores Artificiales; Manufacturas De Cabello"
+66,"Paraguas, sombrillas, quitasoles, bastones, bastones asiento, látigos, fustas, y sus partes",12,XII,"Calzado, Sombreros Y Demás Tocados, Paraguas, Quitasoles, Bastones, Látigos, Fustas, Y Sus Partes; Plumas Preparadas Y Artículos De Plumas; Flores Artificiales; Manufacturas De Cabello"
+67,Plumas y plumón preparados y artículos de plumas o plumón; flores artificiales; manufacturas de cabello,12,XII,"Calzado, Sombreros Y Demás Tocados, Paraguas, Quitasoles, Bastones, Látigos, Fustas, Y Sus Partes; Plumas Preparadas Y Artículos De Plumas; Flores Artificiales; Manufacturas De Cabello"
+68,"Manufacturas de piedra, yeso fraguable, cemento, amianto (asbesto), mica o materias análogas",13,XIII,"Manufacturas De Piedra, Yeso Fraguable, Cemento, Amianto (Asbesto), Mica O Materias Análogas; Productos Cerámicos; Vidrio Y Sus Manufacturas"
+69,Productos cerámicos,13,XIII,"Manufacturas De Piedra, Yeso Fraguable, Cemento, Amianto (Asbesto), Mica O Materias Análogas; Productos Cerámicos; Vidrio Y Sus Manufacturas"
+70,Vidrio y sus manufacturas,13,XIII,"Manufacturas De Piedra, Yeso Fraguable, Cemento, Amianto (Asbesto), Mica O Materias Análogas; Productos Cerámicos; Vidrio Y Sus Manufacturas"
+71,"Perlas finas (naturales) o cultivadas, piedras preciosas o semipreciosas, metales preciosos, chapados de metal precioso (plaqué) y manufacturas de estas materias; bisutería; monedas",14,XIV,"Perlas Finas (Naturales) O Cultivadas, Piedras Preciosas O Semipreciosas, Metales Preciosos, Chapados De Metal Precioso (Plaqué) Y Manufacturas De Estas Materias; Bisutería; Monedas"
+72,"Fundición, hierro y acero",15,XV,Metales Comunes Y Manufacturas De Estos Metales
+73,"Manufacturas de fundición, hierro o acero",15,XV,Metales Comunes Y Manufacturas De Estos Metales
+74,Cobre y sus manufacturas,15,XV,Metales Comunes Y Manufacturas De Estos Metales
+75,Níquel y sus manufacturas,15,XV,Metales Comunes Y Manufacturas De Estos Metales
+76,Aluminio y sus manufacturas,15,XV,Metales Comunes Y Manufacturas De Estos Metales
+77,_(Reservado para una futura utilización en el Sistema Armonizado)_,15,XV,Metales Comunes Y Manufacturas De Estos Metales
+78,Plomo y sus manufacturas,15,XV,Metales Comunes Y Manufacturas De Estos Metales
+79,Cinc y sus manufacturas,15,XV,Metales Comunes Y Manufacturas De Estos Metales
+80,Estaño y sus manufacturas,15,XV,Metales Comunes Y Manufacturas De Estos Metales
+81,Los demás metales comunes; cermets; manufacturas de estas materias,15,XV,Metales Comunes Y Manufacturas De Estos Metales
+82,"Herramientas y útiles, artículos de cuchillería y cubiertos de mesa, de metal común; partes de estos artículos, de metal común",15,XV,Metales Comunes Y Manufacturas De Estos Metales
+83,Manufacturas diversas de metal común,15,XV,Metales Comunes Y Manufacturas De Estos Metales
+84,"Reactores nucleares, calderas, máquinas, aparatos y artefactos mecánicos; partes de estas máquinas o aparatos",16,XVI,"Máquinas Y Aparatos, Material Eléctrico Y Sus Partes; Aparatos De Grabación O Reproducción De Sonido, Aparatos De Grabación O Reproducción De Imagen Y Sonido En Televisión, Y Las Partes Y Accesorios De Estos Aparatos Notas De Sección."
+85,"Máquinas, aparatos y material eléctrico, y sus partes; aparatos de grabación o reproducción de sonido, aparatos de grabación o reproducción de imagen y sonido en televisión, y las partes y accesorios de estos aparatos",16,XVI,"Máquinas Y Aparatos, Material Eléctrico Y Sus Partes; Aparatos De Grabación O Reproducción De Sonido, Aparatos De Grabación O Reproducción De Imagen Y Sonido En Televisión, Y Las Partes Y Accesorios De Estos Aparatos Notas De Sección."
+86,"Vehículos y material para vías férreas o similares, y sus partes; aparatos mecánicos (incluso electromecánicos) de señalización para vías de comunicación",17,XVII,Material De Transporte
+87,"Vehículos automóviles, tractores, velocípedos y demás vehículos terrestres; sus partes y accesorios",17,XVII,Material De Transporte
+88,"Aeronaves, vehículos espaciales, y sus partes",17,XVII,Material De Transporte
+89,Barcos y demás artefactos flotantes,17,XVII,Material De Transporte
+90,"Instrumentos y aparatos de óptica, fotografía o cinematografía, de medida, control o precisión; instrumentos y aparatos medicoquirúrgicos; partes y accesorios de estos instrumentos o aparatos",18,XVIII,"Instrumentos Y Aparatos De Óptica, Fotografía O Cinematografía, De Medida, Control O Precisión; Instrumentos Y Aparatos Medicoquirúrgicos; Aparatos De Relojería; Instrumentos Musicales; Partes Y Accesorios De Estos Instrumentos O Aparatos"
+91,Aparatos de relojería y sus partes,18,XVIII,"Instrumentos Y Aparatos De Óptica, Fotografía O Cinematografía, De Medida, Control O Precisión; Instrumentos Y Aparatos Medicoquirúrgicos; Aparatos De Relojería; Instrumentos Musicales; Partes Y Accesorios De Estos Instrumentos O Aparatos"
+92,Instrumentos musicales; sus partes y accesorios,18,XVIII,"Instrumentos Y Aparatos De Óptica, Fotografía O Cinematografía, De Medida, Control O Precisión; Instrumentos Y Aparatos Medicoquirúrgicos; Aparatos De Relojería; Instrumentos Musicales; Partes Y Accesorios De Estos Instrumentos O Aparatos"
+93,"Armas, municiones, y sus partes y accesorios",19,XIX,"Armas, Municiones, Y Sus Partes Y Accesorios"
+94,"Muebles; mobiliario medicoquirúrgico; artículos de cama y similares; luminarias y aparatos de alumbrado no expresados ni comprendidos en otra parte; anuncios, letreros y placas indicadoras luminosos y artículos similares; construcciones prefabricadas",20,XX,Mercancías Y Productos Diversos
+95,"Juguetes, juegos y artículos para recreo o deporte; sus partes y accesorios",20,XX,Mercancías Y Productos Diversos
+96,Manufacturas diversas,20,XX,Mercancías Y Productos Diversos
+97,Objetos de arte o colección y antigüedades,21,XXI,Objetos De Arte O Colección Y Antigüedades
+98,Mercancías con tratamiento especial,21,XXI,Objetos De Arte O Colección Y Antigüedades

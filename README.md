@@ -87,7 +87,7 @@ subcarpetas `configs/` y `tessconfigs/` de la instalación original).
 app.py                             # punto de entrada del panel (pantalla de inicio + navegación)
 src/
   vista_inicio.py                 # pantalla de inicio (elegir servicio)
-  vista_sunat.py                  # servicio 1: importaciones/exportaciones SUNAT
+  vista_sunat.py                  # servicio 1: importaciones/exportaciones SUNAT (busqueda por texto o por sector)
   vista_clima.py                  # servicio 2: clima diario NASA POWER
   vista_concentracion.py          # servicio 3: concentración de mercado (IHH) / fusiones
   descargar_arancel_completo.py   # descarga el Arancel de Aduanas 2022 completo (todas las subpartidas)
@@ -147,20 +147,32 @@ Abre una pantalla de inicio con tres servicios:
 
 ### 📦 Importaciones / Exportaciones SUNAT
 
-- Un solo selector combinado **"código -- descripción"**: escribe texto
-  libre (ej. `cobre concentrado`) y el selector se acota automáticamente a
-  las subpartidas más parecidas por similitud de texto; también puedes
-  escribir el código directamente.
+Dos modos para elegir subpartida(s), con **selección múltiple** en ambos
+(se lanza una descarga por subpartida, todas corren en paralelo):
+
+- **Por texto o código**: escribe texto libre (ej. `cobre concentrado`) y
+  el selector se acota automáticamente a las subpartidas más parecidas por
+  similitud de texto; también puedes escribir el código directamente.
+- **Por sector / mercado**: elige un Sector (una de las 21 Secciones
+  oficiales del Arancel de Aduanas, ej. "Productos Minerales", "Material
+  de Transporte") y despues un Subsector (uno de los 98 Capítulos, ej.
+  dentro de "Material de Transporte" -> Capítulo 87 "Vehículos
+  automóviles..."), y elige varias subpartidas de ese capítulo sin tener
+  que saber el código de memoria. La clasificación viene de
+  `data/sunat_capitulos_secciones.csv` (extraída del Arancel de Aduanas
+  oficial, no es una taxonomía inventada).
 - Elige el rango de años y si quieres importaciones o exportaciones, y
-  presiona **"Descargar de SUNAT"** -- se mandan TODAS las solicitudes del
-  rango de una sola vez y se sondean en conjunto (no una por una), y corre
-  en un hilo en segundo plano: puedes recargar la página o cerrarla, el
+  presiona **"Descargar de SUNAT"** -- por cada subpartida elegida, se
+  mandan TODAS las solicitudes del rango de años de una sola vez y se
+  sondean en conjunto (no una por una), y cada subpartida corre en su
+  propio hilo en segundo plano: puedes recargar la página o cerrarla, el
   progreso queda guardado mientras el servidor de Streamlit siga corriendo.
-- El panel de la derecha muestra, con colores, el estado de cada año
-  (en cola, enviando consulta, esperando a SUNAT, descargando, completado,
-  sin datos, error) -- SUNAT procesa cada requerimiento de forma asíncrona
-  y puede demorar varios minutos por año.
-- Al terminar, se arma un CSV consolidado descargable.
+- El panel de la derecha muestra, con colores, el estado de cada
+  subpartida x año (en cola, enviando consulta, esperando a SUNAT,
+  descargando, completado, sin datos, error) -- SUNAT procesa cada
+  requerimiento de forma asíncrona y puede demorar varios minutos.
+- Al terminar cada subpartida, se arma su propio CSV consolidado
+  descargable.
 
 ### 🌦️ Clima diario NASA POWER (departamentos del Perú)
 
