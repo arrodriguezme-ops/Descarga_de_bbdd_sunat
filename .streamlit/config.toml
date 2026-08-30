@@ -5,3 +5,10 @@ address = "localhost"
 
 [browser]
 gatherUsageStats = false
+
+[theme]
+# Tema oscuro por defecto (en vez de seguir el claro/oscuro del sistema
+# operativo) -- aplica cuando el selector de la barra lateral esta en
+# "Automático". Los temas ARRM/CE (src/temas.py) siguen pudiendo elegirse
+# aparte y pisan esto con su propio CSS.
+base = "dark"
