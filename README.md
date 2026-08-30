@@ -485,3 +485,6 @@ soporte nativo para más de un tema personalizado conmutable en vivo.
 - La respuesta viene codificada en `ISO-8859-1` (igual que el portal de
   SUNAT), aunque puede mostrarse con tildes rotas en una terminal de Windows
   con otro *code page*; el CSV generado (`utf-8-sig`) queda correcto.
+
+* Actualización 29/07/2026: Encontré BBDD de TV en Perú y páginas con ratings y shares. Serán incluidas próximamente, así como los trims de vehículos.
+
