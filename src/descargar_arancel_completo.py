@@ -98,6 +98,20 @@ def main():
 
         # Normalizar a 10 digitos sin puntos
         sub["codigo_subpartida"] = sub["codigo_subpartida"].str.replace(".", "", regex=False)
+
+        # OJO -- bug real que hacia desaparecer TODOS los capitulos 01-09
+        # (animales vivos, carnes, pescados, lacteos, plantas, hortalizas,
+        # frutas, cafe/especias) de la base: Excel guarda "0101210000"
+        # como el NUMERO 101210000, no como texto -- al pasar por
+        # astype(str) el cero inicial se pierde y queda en 9 digitos. Como
+        # ningun capitulo real empieza en "00" (no existe capitulo 00),
+        # cualquier codigo de 9 digitos en este punto SIEMPRE es un
+        # capitulo 01-09 que perdio su cero inicial -- se restaura antes
+        # de filtrar por longitud, si no el filtro de abajo los descarta
+        # a todos en silencio.
+        sub.loc[sub["codigo_subpartida"].str.len() == 9, "codigo_subpartida"] = (
+            sub.loc[sub["codigo_subpartida"].str.len() == 9, "codigo_subpartida"].str.zfill(10)
+        )
         sub = sub[sub["codigo_subpartida"].str.len() == 10]
 
         partes.append(sub)
