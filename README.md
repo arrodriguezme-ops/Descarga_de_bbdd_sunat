@@ -90,7 +90,7 @@ subcarpetas `configs/` y `tessconfigs/` de la instalación original).
 app.py                             # punto de entrada del panel (pantalla de inicio + navegación)
 src/
   vista_inicio.py                 # pantalla de inicio (elegir servicio)
-  vista_sunat.py                  # servicio 1: importaciones/exportaciones SUNAT (busqueda por texto o por sector)
+  vista_sunat.py                  # servicio 1: importaciones/exportaciones SUNAT (busqueda por texto, por sector o por pais)
   vista_clima.py                  # servicio 2: clima diario NASA POWER
   vista_concentracion.py          # servicio 3: concentración de mercado (IHH) / fusiones
   descargar_arancel_completo.py   # descarga el Arancel de Aduanas 2022 completo (todas las subpartidas)
@@ -152,8 +152,8 @@ Abre una pantalla de inicio con tres servicios:
 
 ### 📦 Importaciones / Exportaciones SUNAT
 
-Dos modos para elegir subpartida(s), con **selección múltiple** en ambos
-(se lanza una descarga por subpartida, todas corren en paralelo):
+Tres modos para elegir subpartida(s), con **selección múltiple** en los
+tres (se lanza una descarga por subpartida, todas corren en paralelo):
 
 - **Por texto o código**: escribe texto libre (ej. `cobre concentrado`) y
   el selector se acota automáticamente a las subpartidas más parecidas por
@@ -166,6 +166,15 @@ Dos modos para elegir subpartida(s), con **selección múltiple** en ambos
   que saber el código de memoria. La clasificación viene de
   `data/sunat_capitulos_secciones.csv` (extraída del Arancel de Aduanas
   oficial, no es una taxonomía inventada).
+- **Por país**: elige uno o más países de origen (importaciones) o
+  destino (exportaciones) -- lista de 264 países/territorios, la misma
+  que usa el formulario real de SUNAT (`data/sunat_paises.csv`) -- y
+  además la(s) subpartida(s) a consultar (reutiliza el mismo buscador por
+  texto que el primer modo). **OJO**: SUNAT exige elegir subpartida(s)
+  siempre -- probado contra el servidor real, una consulta sin partida es
+  rechazada con "PARTIDA INVÁLIDA" aunque el formulario oficial la deje
+  en blanco visualmente. No existe la opción de "todo un país, cualquier
+  partida" de una sola vez.
 - Elige el rango de años y si quieres importaciones o exportaciones, y
   presiona **"Descargar de SUNAT"** -- por cada subpartida elegida, se
   mandan TODAS las solicitudes del rango de años de una sola vez y se

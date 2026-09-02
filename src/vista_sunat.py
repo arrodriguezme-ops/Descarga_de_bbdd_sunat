@@ -22,6 +22,7 @@ import threading
 import time
 from datetime import date, datetime
 from pathlib import Path
+from typing import Optional
 
 import pandas as pd
 import streamlit as st
@@ -89,6 +90,7 @@ def _guardar_estado(almacen):
                 "descripcion": j.get("descripcion", ""),
                 "regi": j["regi"],
                 "anios": j["anios"],
+                "paises": j.get("paises", []),
                 "creado": j["creado"],
                 "estado_por_anio": j["estado_por_anio"],
                 "terminado": j.get("terminado", False),
@@ -102,15 +104,17 @@ def _guardar_estado(almacen):
         pass
 
 
-def _lanzar_job(subpartida: str, descripcion: str, regi: str, anios: list[int]):
+def _lanzar_job(subpartida: str, descripcion: str, regi: str, anios: list[int], paises: Optional[list[str]] = None):
     almacen = _almacen()
-    job_id = f"{subpartida}_{regi}_{min(anios)}_{max(anios)}_{int(time.time())}"
+    sufijo_pais = f"_{'-'.join(paises)}" if paises else ""
+    job_id = f"{subpartida}_{regi}{sufijo_pais}_{min(anios)}_{max(anios)}_{int(time.time())}"
     with almacen["lock"]:
         almacen["jobs"][job_id] = {
             "subpartida": subpartida,
             "descripcion": descripcion,
             "regi": regi,
             "anios": anios,
+            "paises": paises or [],
             "creado": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "estado_por_anio": {str(a): {"estado": "En cola", "mensaje": ""} for a in anios},
             "terminado": False,
@@ -132,7 +136,7 @@ def _lanzar_job(subpartida: str, descripcion: str, regi: str, anios: list[int]):
             sesion = nueva_sesion()
             resultados = procesar_subpartida_anios(
                 subpartida, anios, sesion, CARPETA_RESULTADOS, CARPETA_DBF,
-                regi=regi, on_status=on_status,
+                regi=regi, on_status=on_status, paises=paises,
             )
             partes = [r.datos for r in resultados.values() if r.datos is not None]
             with almacen["lock"]:
@@ -140,7 +144,7 @@ def _lanzar_job(subpartida: str, descripcion: str, regi: str, anios: list[int]):
                 if job is not None:
                     if partes:
                         consolidado = pd.concat(partes, ignore_index=True)
-                        nombre = f"{subpartida}_{regi}_{min(anios)}_{max(anios)}.csv"
+                        nombre = f"{subpartida}_{regi}{sufijo_pais}_{min(anios)}_{max(anios)}.csv"
                         ruta = CARPETA_CONSOLIDADO / nombre
                         consolidado.to_csv(ruta, index=False, encoding="utf-8")
                         job["archivo_consolidado"] = str(ruta)
@@ -163,6 +167,7 @@ def _lanzar_job(subpartida: str, descripcion: str, regi: str, anios: list[int]):
 
 
 ARCHIVO_CAPITULOS = RAIZ / "data" / "sunat_capitulos_secciones.csv"
+ARCHIVO_PAISES = RAIZ / "data" / "sunat_paises.csv"
 
 
 @st.cache_data
@@ -193,6 +198,19 @@ def _cargar_capitulos():
     return df.sort_values(["seccion_numero", "capitulo"]).reset_index(drop=True)
 
 
+@st.cache_data
+def _cargar_paises():
+    """Catalogo de codigos de pais (2 caracteres) del select 'PAIS' del
+    formulario real de SUNAT (aduanet.gob.pe) -- 264 paises/territorios,
+    extraidos directo del <select name="lpais"> (no cambia salvo que SUNAT
+    actualice su propia tabla, no hace falta regenerarlo)."""
+    if not ARCHIVO_PAISES.exists():
+        return None
+    df = pd.read_csv(ARCHIVO_PAISES, dtype=str)
+    df["etiqueta"] = df["codigo"] + " -- " + df["nombre"]
+    return df.sort_values("nombre").reset_index(drop=True)
+
+
 @st.fragment(run_every=4)
 def _panel_estado():
     almacen = _almacen()
@@ -210,6 +228,7 @@ def _panel_estado():
             filas.append({
                 "Lanzado": job["creado"],
                 "Subpartida": job["subpartida"],
+                "País(es)": ", ".join(job.get("paises", [])) or "Todos",
                 "Tipo": "Importacion" if job["regi"] == "Impo" else "Exportacion",
                 "Anio": anio,
                 "Estado": info["estado"],
@@ -235,7 +254,11 @@ def _panel_estado():
         ruta = Path(job["archivo_consolidado"])
         if not ruta.exists():
             continue
-        etiqueta = f"{job['subpartida']} ({min(job['anios'])}-{max(job['anios'])}, {job['regi']}) -- {job.get('filas_consolidado', 0):,} filas"
+        sufijo_pais = f", país: {', '.join(job['paises'])}" if job.get("paises") else ""
+        etiqueta = (
+            f"{job['subpartida']} ({min(job['anios'])}-{max(job['anios'])}, {job['regi']}{sufijo_pais}) "
+            f"-- {job.get('filas_consolidado', 0):,} filas"
+        )
         with st.expander(etiqueta):
             st.download_button(
                 "Descargar CSV consolidado",
@@ -315,6 +338,36 @@ def _selector_por_sector(df: pd.DataFrame) -> pd.DataFrame:
     return opciones_df[opciones_df["etiqueta"].isin(etiquetas_elegidas)]
 
 
+def _selector_por_pais(df: pd.DataFrame) -> tuple[pd.DataFrame, list[str]]:
+    """Modo 'por país': elegir uno o más países de origen/destino y acotar
+    la consulta a ellos. OJO -- probado contra el servidor real de SUNAT:
+    la partida SIEMPRE es obligatoria (una consulta sin partida es
+    rechazada con "PARTIDA INVALIDA, VERIFIQUE" aunque el formulario la
+    deje en blanco visualmente), asi que este modo tambien pide elegir
+    subpartida(s) -- el país se manda ADEMAS de la partida, no en su
+    lugar. Devuelve (subpartidas elegidas, codigos de país elegidos)."""
+    paises = _cargar_paises()
+    if paises is None:
+        st.warning(
+            f"No se encontró '{ARCHIVO_PAISES.relative_to(RAIZ)}' -- la búsqueda por país no está "
+            "disponible, pero las otras dos búsquedas sí funcionan."
+        )
+        return df.iloc[0:0], []
+
+    etiquetas_pais = st.multiselect(
+        "País(es) de origen (importaciones) o destino (exportaciones):",
+        options=paises["etiqueta"].tolist(),
+        key="selector_pais",
+        help="Filtra la consulta a estos países. SUNAT exige elegir subpartida(s) también -- "
+        "no se puede pedir 'todo un país, cualquier partida' (el servidor lo rechaza).",
+    )
+    codigos_pais = paises.loc[paises["etiqueta"].isin(etiquetas_pais), "codigo"].tolist()
+
+    st.caption("Elige también la(s) subpartida(s) a consultar para ese/esos país(es):")
+    elegidas = _selector_por_texto(df)
+    return elegidas, codigos_pais
+
+
 def render():
     st.title("Buscador y descarga de importaciones por subpartida -- SUNAT")
 
@@ -332,15 +385,20 @@ def render():
     with col_izq:
         st.subheader("1. Elige la(s) subpartida(s)")
         modo = st.radio(
-            "Modo de búsqueda", options=["Por texto o código", "Por sector / mercado"],
+            "Modo de búsqueda", options=["Por texto o código", "Por sector / mercado", "Por país"],
             horizontal=True, key="modo_busqueda_sunat",
         )
+        paises_elegidos: list[str] = []
         if modo == "Por texto o código":
             elegidas = _selector_por_texto(df)
-        else:
+        elif modo == "Por sector / mercado":
             elegidas = _selector_por_sector(df)
+        else:
+            elegidas, paises_elegidos = _selector_por_pais(df)
 
-        if elegidas.empty:
+        if modo == "Por país" and not paises_elegidos:
+            st.info("Elige al menos un país arriba para continuar.")
+        elif elegidas.empty:
             st.info("Elige al menos una subpartida arriba para continuar.")
         else:
             st.dataframe(
@@ -349,6 +407,8 @@ def render():
                 ),
                 hide_index=True, width="stretch",
             )
+            if paises_elegidos:
+                st.caption(f"País(es) elegido(s): {', '.join(paises_elegidos)}")
 
         st.divider()
         st.subheader("2. Descarga de importaciones en SUNAT")
@@ -372,8 +432,10 @@ def render():
             "que puedes seguir usando la pagina (o cerrarla) mientras esperan a SUNAT."
         )
 
+        falta_pais = modo == "Por país" and not paises_elegidos
         lanzar = st.button(
-            "Descargar de SUNAT", type="primary", width="stretch", disabled=elegidas.empty,
+            "Descargar de SUNAT", type="primary", width="stretch",
+            disabled=elegidas.empty or falta_pais,
         )
 
         if lanzar:
@@ -382,9 +444,10 @@ def render():
             else:
                 anios = list(range(int(anio_inicio), int(anio_fin) + 1))
                 for _, fila in elegidas.iterrows():
-                    _lanzar_job(fila["codigo_subpartida"], fila["descripcion"], regi, anios)
+                    _lanzar_job(fila["codigo_subpartida"], fila["descripcion"], regi, anios, paises=paises_elegidos or None)
+                sufijo = f" -- país(es): {', '.join(paises_elegidos)}" if paises_elegidos else ""
                 st.success(
-                    f"Descarga lanzada para {len(elegidas)} subpartida(s) x {len(anios)} año(s). "
+                    f"Descarga lanzada para {len(elegidas)} subpartida(s) x {len(anios)} año(s){sufijo}. "
                     "Revisa el estado a la derecha."
                 )
 

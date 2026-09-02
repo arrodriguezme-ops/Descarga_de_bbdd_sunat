@@ -164,13 +164,29 @@ def fechas_del_anio(anio: int, mes_fin: int = 12, dia_fin: Optional[int] = None)
     return fini, ffin
 
 
-def enviar_consulta(subpartida: str, fini: str, ffin: str, sesion: requests.Session, regi: str = "Impo") -> dict:
+def enviar_consulta(
+    subpartida: str, fini: str, ffin: str, sesion: requests.Session, regi: str = "Impo",
+    paises: Optional[list[str]] = None,
+) -> dict:
     """Envia el requerimiento de descarga para una subpartida y un rango de
-    fechas (regi='Impo' para importaciones, 'Expo' para exportaciones)."""
+    fechas (regi='Impo' para importaciones, 'Expo' para exportaciones).
+
+    `paises`: codigos de pais (ej. ["CN", "US"], del select "PAIS" del
+    formulario real de SUNAT) para acotar la consulta a esos paises de
+    origen/destino. Si no se pasa (o va vacio), se pide "todos los
+    paises" (ltotpais="T"), igual que antes. OJO: la partida SIEMPRE es
+    obligatoria para SUNAT -- probado contra el servidor real, una
+    consulta con "lcnan" vacio (sin partida) es rechazada con "PARTIDA
+    INVALIDA, VERIFIQUE" aunque el formulario visualmente permita dejarlo
+    en blanco (esa validacion de blanco es solo del lado del cliente)."""
     data = {
         "lcnan": subpartida, "fini": fini, "ffin": ffin,
-        "ltotaduana": "T", "ltotpais": "T", "tipo": "DBF", "tcon": "E", "regi": regi,
+        "ltotaduana": "T", "tipo": "DBF", "tcon": "E", "regi": regi,
     }
+    if paises:
+        data["lpais"] = paises  # requests manda cada valor como lpais=XX&lpais=YY (select multiple)
+    else:
+        data["ltotpais"] = "T"
     resp = sesion.post(URL_ENVIO, data=data, headers={"Referer": URL_FORMULARIO}, timeout=30)
     texto = resp.content.decode("ISO-8859-1", errors="replace")
     m = re.search(r"\d{8}\.CON", texto)
@@ -371,6 +387,7 @@ def procesar_subpartida_anios(
     intervalo_poll_seg: int = 20,
     pausa_entre_envios_seg: float = 1.5,
     on_status: Optional[Callable[[dict], None]] = None,
+    paises: Optional[list[str]] = None,
 ) -> dict[int, ResultadoAnio]:
     """Version por lotes de procesar_subpartida_anio: manda las consultas de
     TODOS los anios primero, y despues sondea la tabla de resultados UNA vez
@@ -399,7 +416,7 @@ def procesar_subpartida_anios(
 
         _avisar(anio, ESTADO_ENVIANDO, f"Consultando {fini} - {ffin}")
         try:
-            envio = enviar_consulta(subpartida, fini, ffin, sesion, regi=regi)
+            envio = enviar_consulta(subpartida, fini, ffin, sesion, regi=regi, paises=paises)
         except requests.RequestException as e:
             _avisar(anio, ESTADO_ERROR, f"No se pudo enviar la consulta: {e}")
             resultados[anio] = ResultadoAnio(subpartida, anio, ESTADO_ERROR, mensaje=str(e))
@@ -477,6 +494,7 @@ def procesar_subpartida_anio(
     max_espera_seg: int = 1800,
     intervalo_poll_seg: int = 25,
     on_status: Optional[Callable[[dict], None]] = None,
+    paises: Optional[list[str]] = None,
 ) -> ResultadoAnio:
     """Flujo completo para UNA subpartida y UN anio:
     1. Envia la consulta a SUNAT.
@@ -500,7 +518,7 @@ def procesar_subpartida_anio(
 
     _avisar(ESTADO_ENVIANDO, f"Consultando {fini} - {ffin}")
     try:
-        envio = enviar_consulta(subpartida, fini, ffin, sesion, regi=regi)
+        envio = enviar_consulta(subpartida, fini, ffin, sesion, regi=regi, paises=paises)
     except requests.RequestException as e:
         _avisar(ESTADO_ERROR, f"No se pudo enviar la consulta: {e}")
         return ResultadoAnio(subpartida, anio, ESTADO_ERROR, mensaje=str(e))
