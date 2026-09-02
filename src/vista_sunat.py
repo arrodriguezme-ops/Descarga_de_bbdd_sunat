@@ -17,6 +17,7 @@ Cambios clave respecto a la primera version:
 """
 
 import json
+import re
 import sys
 import threading
 import time
@@ -270,15 +271,64 @@ def _panel_estado():
             )
 
 
+def _match_termino(termino: str, df: pd.DataFrame) -> Optional[str]:
+    """Busca UN termino (de una lista separada por comas) contra el
+    catalogo: si es puramente numerico se busca como codigo (exacto, o por
+    prefijo si no hay exacto -- util para pegar un codigo de menos de 10
+    digitos); si no, la mejor coincidencia difusa. Devuelve la etiqueta
+    encontrada, o None si no hubo nada razonablemente parecido."""
+    solo_digitos = re.sub(r"\s", "", termino)
+    if solo_digitos.isdigit():
+        exacto = df[df["codigo_subpartida"] == solo_digitos]
+        if not exacto.empty:
+            return exacto.iloc[0]["etiqueta"]
+        por_prefijo = df[df["codigo_subpartida"].str.startswith(solo_digitos)]
+        if not por_prefijo.empty:
+            return por_prefijo.iloc[0]["etiqueta"]
+        return None
+
+    match = process.extractOne(termino, df["etiqueta"].tolist(), scorer=fuzz.WRatio, score_cutoff=60)
+    return match[0] if match else None
+
+
 def _selector_por_texto(df: pd.DataFrame) -> pd.DataFrame:
     """Modo 'por texto o codigo': busqueda difusa + multiselect. Devuelve
-    el subconjunto de df elegido por el usuario (0 o mas filas)."""
+    el subconjunto de df elegido por el usuario (0 o mas filas).
+
+    Admite pegar VARIOS terminos separados por coma en el mismo campo (ej.
+    '2603000000,7401001000,cobre concentrado') -- cada termino se busca
+    por su cuenta (codigo exacto/por prefijo si es numerico, si no la
+    mejor coincidencia difusa) y se preseleccionan todas en el multiselect
+    de una, en vez de tener que buscar y elegir una por una."""
     consulta = st.text_input(
-        "Escribe el producto o el codigo (ej. 'cobre concentrado', 'vino tinto', '2603000000')",
+        "Escribe el producto, el código, o varios separados por coma "
+        "(ej. 'cobre concentrado', '2603000000,7401001000,8703211090')",
         key="consulta_texto",
     )
 
-    if consulta.strip():
+    if consulta.strip() and "," in consulta:
+        terminos = [t.strip() for t in consulta.split(",") if t.strip()]
+        etiquetas_encontradas = []
+        for termino in terminos:
+            etiqueta = _match_termino(termino, df)
+            if etiqueta and etiqueta not in etiquetas_encontradas:
+                etiquetas_encontradas.append(etiqueta)
+
+        # Preseleccionar en el multiselect -- solo la primera vez que se ve
+        # ESTA lista exacta de terminos, para no pisar si el usuario despues
+        # saca alguna a mano sin tocar el texto.
+        if st.session_state.get("_ultima_consulta_multi") != consulta:
+            st.session_state["selector_subpartida_texto"] = etiquetas_encontradas
+            st.session_state["_ultima_consulta_multi"] = consulta
+
+        opciones_df = df[df["etiqueta"].isin(etiquetas_encontradas)]
+        if opciones_df.empty:
+            opciones_df = df
+        faltantes = len(terminos) - len(etiquetas_encontradas)
+        ayuda = f"Se reconocieron {len(etiquetas_encontradas)} de {len(terminos)} término(s) separados por coma."
+        if faltantes:
+            ayuda += f" {faltantes} no se pudo(eron) emparejar con ninguna subpartida."
+    elif consulta.strip():
         coincidencias = process.extract(
             consulta, df["etiqueta"].tolist(), scorer=fuzz.WRatio, limit=MAX_SUGERENCIAS
         )

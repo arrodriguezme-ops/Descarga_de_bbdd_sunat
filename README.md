@@ -157,7 +157,12 @@ tres (se lanza una descarga por subpartida, todas corren en paralelo):
 
 - **Por texto o código**: escribe texto libre (ej. `cobre concentrado`) y
   el selector se acota automáticamente a las subpartidas más parecidas por
-  similitud de texto; también puedes escribir el código directamente.
+  similitud de texto; también puedes escribir el código directamente. Para
+  varios de una, separalos por coma (ej.
+  `2603000000,7401001000,cobre concentrado`) -- cada término se busca por
+  su cuenta (código exacto/por prefijo si es numérico, si no la mejor
+  coincidencia por texto) y se preseleccionan todos en el multiselect de
+  una sola vez.
 - **Por sector / mercado**: elige un Sector (una de las 21 Secciones
   oficiales del Arancel de Aduanas, ej. "Productos Minerales", "Material
   de Transporte") y despues un Subsector (uno de los 98 Capítulos, ej.
